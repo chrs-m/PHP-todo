@@ -3,24 +3,21 @@
 
 <article>
     <h1><?php echo $config['title']; ?></h1>
-    <?php if (!isset($_SESSION['user'])) : ?>
-        <?PHP $_SESSION['message'] = "Welcome stranger!"; ?>
-        <?php echo $_SESSION['message']; ?>
-    <?php endif ?>
-    <br>
+
 
 
     <?php if (isset($_SESSION['user'])) : ?>
-        <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
-        <a href="/lists.php" class="btn btn-primary">Check and update lists!</a>
+        <p>Hi, <?php echo $_SESSION['user']['name']; ?>! What do you need to do today?</p>
     <?php else : ?>
         <a href="/signup.php">No account? Sign up here!</a>
     <?php endif; ?>
 
 </article>
 
+<!-- Here should lists and tasks being displayed -->
 
 
+<a href="/create.php" class="btn btn-primary">Create new list!</a>
 
 
 <?php require __DIR__ . '/views/footer.php'; ?>
