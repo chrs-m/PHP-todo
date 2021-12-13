@@ -12,7 +12,7 @@
 
     <?php if (isset($_SESSION['user'])) : ?>
         <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
-        <a href="/posts.php" class="btn btn-primary">Check or upload posts!</a>
+        <a href="/lists.php" class="btn btn-primary">Check or upload posts!</a>
     <?php else : ?>
         <a href="/signup.php">No account? Sign up here!</a>
     <?php endif; ?>
