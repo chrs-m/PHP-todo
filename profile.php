@@ -1,0 +1,68 @@
+<?php require __DIR__ . '/app/autoload.php'; ?>
+<?php require __DIR__ . '/views/header.php'; ?>
+
+<article class="profile-container">
+    <h1><?php echo $config['title']; ?></h1>
+    <?php if (!isset($_SESSION['user'])) : ?>
+        <?PHP $_SESSION['message'] = "Welcome stranger!"; ?>
+        <?php echo $_SESSION['message']; ?>
+    <?php endif ?>
+    <br>
+
+
+    <?php if (isset($_SESSION['user'])) : ?>
+        <p>Hi, <?php echo $_SESSION['user']['name']; ?>!</p>
+
+        <img class="avatar" src="<?= '/app/database/avatars/' . $_SESSION['user']['avatar'] ?>" alt="Profile avatar image">
+        <p>Here you can update your avatar, e-mail and/or password down below.</p>
+
+    <?php endif; ?>
+
+</article>
+
+<article class="update-info-container">
+    <h1>Update info</h1>
+    <br>
+    <?= $_SESSION['message']; ?>
+    <br>
+    <br>
+
+    <form action="app/users/profile.php" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="avatar">Choose your new avatar</label>
+            <br>
+            <input class="image-input" type="file" accept="image/jpeg, image/png" name="avatar">
+            <br>
+            <br>
+        </div>
+
+        <div class="mb-3">
+            <label for="new-email">Enter your new email below</label>
+            <input class="form-control" type="email" name="new-email" id="new-email" placeholder="email@email.com" required>
+            <small class="form-text">Please provide the your email address.</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="new-password">Choose your new password</label>
+            <input class="form-control" type="password" name="new-password" id="new-password" placeholder="Password" required>
+            <small class="form-text">Please provide your new password (passphrase).</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="confirm-new-password">Confrim your new password</label>
+            <input class="form-control" type="password" name="confirm-new-password" id="confirm-new-password" placeholder="Confirm your passowrd" required>
+            <small class="form-text">Please provide your new password again.</small>
+            <br>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</article>
+
+
+
+
+
+<?php require __DIR__ . '/views/footer.php'; ?>
