@@ -11,7 +11,7 @@ if (isset($_SESSION['user'])) {
     $id = $_SESSION['user']['id'];
 
     $statement = $database->prepare('SELECT * FROM users WHERE id = :id');
-    $statement->bindParam(':id', $id, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
@@ -21,7 +21,7 @@ if (isset($_SESSION['user'])) {
     // IF YOU ARE LOGGED IN, YOU ARE ABLE TO CHANGE YOUR EMAIL
     if (isset($_POST['new-email'])) {
         $statement = $database->prepare('UPDATE users SET email = :email WHERE id = :id');
-        $statement->bindParam(':id', $id, PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->bindParam(':email', $registeredEmail, PDO::PARAM_STR);
         $statement->execute();
 

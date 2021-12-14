@@ -1,5 +1,22 @@
-<?php require __DIR__ . '/app/autoload.php'; ?>
-<?php require __DIR__ . '/views/header.php'; ?>
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/app/autoload.php';
+require __DIR__ . '/views/header.php';
+
+$userId = $_SESSION['user']['id'];
+
+$statement = $database->prepare('SELECT * FROM lists WHERE user_id = :id');
+$statement->bindParam(':id', $userId, PDO::PARAM_INT);
+$statement->execute();
+
+$userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
+<?= $_SESSION['message']; ?>
 
 <section>
     <h2>Create list</h2>
@@ -19,21 +36,25 @@
 <section>
     <h2>Create task</h2>
     <div class="create-task">
-        <form class="create-post-container" action="/app/lists/create.php" method="post" enctype="multipart/form-data">
+        <form class="create-post-container" action="/app/tasks/create.php" method="post" enctype="multipart/form-data">
             <div class="form-container">
                 <label for="task-title">Title</label>
                 <br>
                 <input class="task-title" type="text" name="task-title" required placeholder="Whats your task?"></input>
                 <br>
-                <!-- <input class="task-description" type="text" name="task-description" required placeholder="What should you do?"></input>
-                <br> -->
+                <!-- FOREACH EVERY LIST CONNECTED TO THE USER -->
                 <select class="task-list" name="task-list" required>
                     <option value="">--Please choose a list--</option>
-                    <option value="List 1">List 1</option>
+                    <?php
+                    foreach ($userLists as $userList) { ?>
+                        <option value="<?= $userList['id'] ?>"><?= $userList['description'] ?></option>
+                    <?php
+                    } ?>
+                    <option value=""></option>
                 </select>
                 <br>
                 <label for="task-deadline">Do you need a deadline?</label>
-                <input class="task-deadline" type="date" name="task-deadline"></input>
+                <input class="task-deadline" type="datetime-local" name="task-deadline"></input>
                 <br>
                 <button class="btn btn-primary submit" type="submit" name="button">Create</button>
             </div>
