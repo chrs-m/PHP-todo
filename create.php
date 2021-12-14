@@ -42,18 +42,16 @@ $userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <br>
                 <input class="task-title" type="text" name="task-title" required placeholder="Whats your task?"></input>
                 <br>
-                <!-- FOREACH EVERY LIST CONNECTED TO THE USER -->
+                <!-- LOOPS OUT EVERY LIST CONNECTED TO THE USER -->
                 <select class="task-list" name="task-list" required>
                     <option value="">--Please choose a list--</option>
                     <?php
                     foreach ($userLists as $userList) { ?>
                         <option value="<?= $userList['id'] ?>"><?= $userList['description'] ?></option>
-                    <?php
-                    } ?>
-                    <option value=""></option>
+                    <?php } ?>
                 </select>
                 <br>
-                <label for="task-deadline">Do you need a deadline?</label>
+                <label for="task-deadline">Do you have a deadline?</label>
                 <input class="task-deadline" type="datetime-local" name="task-deadline"></input>
                 <br>
                 <button class="btn btn-primary submit" type="submit" name="button">Create</button>

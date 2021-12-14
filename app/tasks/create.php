@@ -10,6 +10,7 @@ if (isset($_POST['task-title'])) {
     $taskTitle = trim(filter_var($_POST['task-title'], FILTER_SANITIZE_SPECIAL_CHARS));
     $taskList = trim(filter_var($_POST['task-list'], FILTER_SANITIZE_SPECIAL_CHARS));
     $taskDeadline =  trim(filter_var($_POST['task-deadline'], FILTER_SANITIZE_SPECIAL_CHARS));
+    // $listId = trim(filter_var($_POST, FILTER_SANITIZE_NUMBER_INT));
 
 
     // die(var_dump($taskTitle));
