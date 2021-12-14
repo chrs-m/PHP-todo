@@ -29,28 +29,32 @@
 
     <form action="app/users/profile.php" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="avatar">Choose your new avatar</label>
+            <label for="update-avatar">Choose your new avatar</label>
             <br>
-            <input class="image-input" type="file" accept="image/jpeg, image/png" name="avatar">
+            <input class="image-input" type="file" accept="image/jpeg, image/png" name="update-avatar">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Update</button>
             <br>
             <br>
         </div>
-
+    </form>
+    <form action="app/users/profile.php" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="new-email">Enter your new email below</label>
-            <input class="form-control" type="email" name="new-email" id="new-email" placeholder="email@email.com" required>
+            <input class="form-control" type="email" name="new-email" id="new-email" placeholder="email@email.com">
             <small class="form-text">Please provide the your email address.</small>
         </div>
 
         <div class="mb-3">
             <label for="new-password">Choose your new password</label>
-            <input class="form-control" type="password" name="new-password" id="new-password" placeholder="Password" required>
+            <input class="form-control" type="password" name="new-password" id="new-password" placeholder="Password">
             <small class="form-text">Please provide your new password (passphrase).</small>
         </div>
 
         <div class="mb-3">
             <label for="confirm-new-password">Confrim your new password</label>
-            <input class="form-control" type="password" name="confirm-new-password" id="confirm-new-password" placeholder="Confirm your passowrd" required>
+            <input class="form-control" type="password" name="confirm-new-password" id="confirm-new-password" placeholder="Confirm your passowrd">
             <small class="form-text">Please provide your new password again.</small>
             <br>
         </div>
