@@ -18,6 +18,8 @@ $statement = $database->prepare('SELECT * FROM tasks INNER JOIN lists ON lists.i
 $statement->execute();
 $userTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+
+
 // QUERY TO GET ALL AVAILABLE TASKS FOR THE USER
 $statement = $database->prepare('SELECT * FROM tasks WHERE user_id = :id');
 $statement->bindParam(':id', $userId, PDO::PARAM_INT);

@@ -27,25 +27,29 @@
     <br>
     <br>
 
-    <form action="app/users/profile.php" method="post" enctype="multipart/form-data">
+    <form action="app/users/update/avatar.php" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="update-avatar">Choose your new avatar</label>
             <br>
             <input class="image-input" type="file" accept="image/jpeg, image/png" name="update-avatar">
             <br>
             <br>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Update avatar</button>
             <br>
             <br>
         </div>
     </form>
-    <form action="app/users/profile.php" method="post" enctype="multipart/form-data">
+    <form action="app/users/update/email.php" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="new-email">Enter your new email below</label>
             <input class="form-control" type="email" name="new-email" id="new-email" placeholder="email@email.com">
-            <small class="form-text">Please provide the your email address.</small>
+            <small class="form-text">Please provide your new email address.</small>
         </div>
-
+        <button type="submit" class="btn btn-primary">Update e-mail</button>
+        <br>
+        <br>
+    </form>
+    <form action="app/users/update/password.php" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="new-password">Choose your new password</label>
             <input class="form-control" type="password" name="new-password" id="new-password" placeholder="Password">
@@ -61,7 +65,7 @@
 
 
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary">Update password</button>
     </form>
 </article>
 

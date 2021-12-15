@@ -14,7 +14,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
         $name = trim(filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS));
         $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS));
         $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-        $password = trim(password_hash($_POST['password'], PASSWORD_DEFAULT));
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         $statement = $database->prepare('SELECT email, username FROM users WHERE email = :email AND username = :username');
 
@@ -24,7 +24,6 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
 
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-        // die(var_dump($user, $email, $username));
         if ($user && $email === $user['email'] && $username === $user['username']) {
             $_SESSION['message'] = "You already have an account! Try sign in instead.";
             redirect('/login.php');
@@ -36,11 +35,6 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
 
                 $avatar = $_FILES['avatar'];
 
-                // die(var_dump($_FILES['image']));
-                // die(var_dump($_POST['description']));
-
-                // die(var_dump(pathinfo($_FILES['image']['type'])['filename']));
-
                 $errors = [];
 
                 // CHECKS IF IMAGE IS PNG OR JPEG
@@ -50,8 +44,6 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
                     $errors[] = 'The uploaded file ' . $avatar['name'] . ' exceeded the filesize limit.';
                 }
 
-
-                // die(var_dump($fileExt));
 
                 // CHECKS IF THEIR ARE ANY ERRORS, IF SO, THEN EXIT
                 if (count($errors) > 0) {
@@ -67,8 +59,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
 
                 // PUTS THE IMAGE TO THE UPLOADS FOLDER
                 $destinationAndName = __DIR__ . '/../database/avatars/' . $imgName;
-                // print_r(explode('/', $_FILES['type']));
-                // die(var_dump($destination));
+
 
                 move_uploaded_file($avatar['tmp_name'], $destinationAndName);
             }
