@@ -7,26 +7,25 @@ require __DIR__ . '/views/header.php';
 
 $userId = $_SESSION['user']['id'];
 
+// QUERY TO GET ALL AVAILABLE LISTS FOR THE USER
 $statement = $database->prepare('SELECT * FROM lists WHERE user_id = :id');
 $statement->bindParam(':id', $userId, PDO::PARAM_INT);
 $statement->execute();
-
 $userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
+// QUERY TO GET ALL AVAILABLE TASKS WIHTIN CHOOSEN LIST
 $statement = $database->prepare('SELECT * FROM tasks INNER JOIN lists ON lists.id = tasks.list_id');
-// $statement->bindParam(':id', $userId, PDO::PARAM_INT);
 $statement->execute();
-
 $userTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+// QUERY TO GET ALL AVAILABLE TASKS FOR THE USER
 $statement = $database->prepare('SELECT * FROM tasks WHERE user_id = :id');
 $statement->bindParam(':id', $userId, PDO::PARAM_INT);
 $statement->execute();
-
 $allUserTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-// die(var_dump($userLists));
+
+// die(var_dump($userTasks));
 ?>
 
 <article>
@@ -50,7 +49,10 @@ $allUserTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
         <details>
             <summary><?= $userList['description'] ?></summary>
             <?php foreach ($userTasks as $userTask) { ?>
-                <input type="checkbox" id="<?= $userTask['title'] ?>" name="<?= $userTask['title'] ?>" <label for="<?= $userTask['title'] ?>"><?= $userTask['title'] ?></label>
+                <!-- HERE WE CHECK IF THE LISTS CONTAIN ANY TASKS WITH THE SAME ID -->
+                <?php if ($userTask['list_id'] == $userList['id']) : ?>
+                    <input type="checkbox" id="<?= $userTask['title'] ?>" name="<?= $userTask['title'] ?>" <label for="<?= $userTask['title'] ?>"><?= $userTask['title'] ?></label>
+                <?php endif; ?>
             <?php } ?>
         </details>
     <?php } ?>
