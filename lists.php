@@ -7,24 +7,50 @@ require __DIR__ . '/views/header.php';
 
 $userId = $_SESSION['user']['id'];
 
-// QUERY TO GET ALL AVAILABLE LISTS FOR THE USER
-$statement = $database->prepare('SELECT * FROM lists WHERE user_id = :id');
+//QUERY TO GET ALL AVAILABLE LISTS FOR THE USER
+// $statement = $database->prepare('SELECT * FROM lists WHERE user_id = :id');
+// $statement->bindParam(':id', $userId, PDO::PARAM_INT);
+// $statement->execute();
+// $userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+//QUERY TO GET ALL AVAILABLE TASKS WIHTIN CHOOSEN LIST
+// $statement = $database->prepare('SELECT * FROM tasks INNER JOIN lists ON lists.id = tasks.list_id');
+// $statement->execute();
+// $userTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// QUERY TO GET ALL LISTS AND TASKS FOR THE USER
+$statement = $database->prepare('SELECT
+lists.id AS list_id,
+lists.description AS list_desc,
+tasks.title AS task_title,
+tasks.description as task_description,
+tasks.user_id AS task_user_id,
+tasks.id AS task_id,
+tasks.deadline AS task_deadline,
+tasks.created AS task_created,
+tasks.updated AS task_updated,
+tasks.list_id AS task_list_id,
+tasks.completed AS task_completed
+FROM
+lists
+INNER JOIN users ON lists.user_id = users.id
+LEFT JOIN tasks ON lists.id = tasks.list_id
+WHERE lists.user_id = :id
+GROUP BY task_list_id
+ORDER BY list_desc ASC;');
 $statement->bindParam(':id', $userId, PDO::PARAM_INT);
 $statement->execute();
-$userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
+$userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-// QUERY TO GET ALL AVAILABLE TASKS WIHTIN CHOOSEN LIST
-$statement = $database->prepare('SELECT * FROM tasks INNER JOIN lists ON lists.id = tasks.list_id');
-$statement->execute();
-$userTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+// die(var_dump($userListsAndTasks));
 
 
 
 // QUERY TO GET ALL AVAILABLE TASKS FOR THE USER
-$statement = $database->prepare('SELECT * FROM tasks WHERE user_id = :id');
-$statement->bindParam(':id', $userId, PDO::PARAM_INT);
-$statement->execute();
-$allUserTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+// $statement = $database->prepare('SELECT * FROM tasks WHERE user_id = :id');
+// $statement->bindParam(':id', $userId, PDO::PARAM_INT);
+// $statement->execute();
+// $allUserTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 // die(var_dump($userTasks));
@@ -43,27 +69,38 @@ $allUserTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 </article>
 
-<div>
+<div class="container">
     <h2>My lists</h2>
     <!-- HERE WE LOOP ALL LISTS AVAILABLE FOR THE USER -->
-    <?php
-    foreach ($userLists as $userList) { ?>
-        <details>
-            <summary><?= $userList['description'] ?></summary>
+
+    <?php foreach ($userListsAndTasks as $userListAndTask) : ?>
+        <details class="">
+            <summary><?= $userListAndTask['list_desc'] ?></summary>
+            <?php if ($userListAndTask['list_id'] === $userListAndTask['task_id']) : ?>
+            <?php endif; ?>
+        </details>
+    <?php endforeach; ?>
+
+
+
+    <!-- <?php
+            foreach ($userLists as $userList) { ?>
+        <details class="">
+            <summary class="mt-2"><?= $userList['description'] ?></summary>
             <?php foreach ($userTasks as $userTask) { ?>
                 <!-- HERE WE CHECK IF THE LISTS CONTAIN ANY TASKS WITH THE SAME ID -->
-                <?php if ($userTask['list_id'] == $userList['id']) : ?>
-                    <input type="checkbox" id="<?= $userTask['title'] ?>" name="<?= $userTask['title'] ?>" <label for="<?= $userTask['title'] ?>"><?= $userTask['title'] ?></label>
-                <?php endif; ?>
-            <?php } ?>
-        </details>
+    <?php if ($userTask['list_id'] == $userList['id']) : ?>
+        <input type="checkbox" id="<?= $userTask['title'] ?>" name="<?= $userTask['title'] ?>" <label for="<?= $userTask['title'] ?>"><?= $userTask['title'] ?></label>
+    <?php endif; ?>
+<?php } ?>
+</details>
+<?php } ?>
+<details>
+    <summary class="all-tasks mt-2">All my tasks</summary>
+    <?php foreach ($userTasks as $allUserTasks) { ?>
+        <input type="checkbox" id="<?= $allUserTasks['title'] ?>" name="<?= $allUserTasks['title'] ?>" <label for="<?= $allUserTasks['title'] ?>"><?= $allUserTasks['title'] ?></label>
     <?php } ?>
-    <details>
-        <summary class="all-tasks">All my tasks</summary>
-        <?php foreach ($allUserTasks as $allUserTask) { ?>
-            <input type="checkbox" id="<?= $allUserTask['title'] ?>" name="<?= $allUserTask['title'] ?>" <label for="<?= $allUserTask['title'] ?>"><?= $allUserTask['title'] ?></label>
-        <?php } ?>
-    </details>
+</details> -->
 </div>
 
 

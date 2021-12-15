@@ -8,7 +8,6 @@ require __DIR__ . '/../../autoload.php';
 // IF YOU ARE LOGGED IN, YOU ARE ABLE TO CHANGE YOUR AVATAR
 
 if (isset($_SESSION['user']) && isset($_FILES['update-avatar'])) {
-
     // VARIABLES TO GIVES UPLOADED IMAGES RANDOM NAME OF NUMBERS AND THE CORRECT FILE EXTENSION
     $id = $_SESSION['user']['id'];
     $fileExt = pathinfo($_FILES['update-avatar']['type'])['filename'];
