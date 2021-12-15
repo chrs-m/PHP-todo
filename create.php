@@ -42,6 +42,8 @@ $userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <br>
                 <input class="task-title" type="text" name="task-title" required placeholder="Whats your task?"></input>
                 <br>
+                <input class="task-description" type="text" name="task-description" placeholder="Extra description?"></input>
+                <br>
                 <!-- LOOPS OUT EVERY LIST CONNECTED TO THE USER -->
                 <select class="task-list" name="task-list" required>
                     <option value="">--Please choose a list--</option>
