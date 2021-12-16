@@ -25,7 +25,7 @@ if (isset($_POST['email'], $_POST['password'])) {
             "email" => $user['email'],
             "avatar" => $user['avatar'],
         ];
-        redirect('/index.php');
+        redirect('/lists.php');
     } else {
         redirect('/about.php');
     }
