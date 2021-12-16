@@ -1,22 +1,9 @@
 {
-  "name": "php-todo",
-  "version": "1.0.0",
-  "description": "<img src=\"https://media2.giphy.com/media/GcSqyYa2aF8dy/giphy.gif?cid=ecf05e47wqfjw3967kyupppy6l0l317voa7baayzxxx319dc&rid=giphy.gif&ct=g\" width=\"100%\">",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chrs-m/PHP-todo.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chrs-m/PHP-todo/issues"
-  },
-  "homepage": "https://github.com/chrs-m/PHP-todo#readme",
-  "devDependencies": {
-    "tailwindcss": "^3.0.5"
-  }
+    "scripts": {
+        "dev": "tailwindcss -i ./index.css -o ./public/assets/styles/tailwind/style.css -w",
+        "build": "tailwindcss -i ./index.css -o ./public/assets/styles/tailwind/style.css -m"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.0.5"
+    }
 }

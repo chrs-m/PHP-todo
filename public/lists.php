@@ -33,29 +33,25 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <article>
-    <h1><?php echo $config['title']; ?></h1>
-
-
-
     <?php if (isset($_SESSION['user'])) : ?>
-        <p>Hi, <?php echo $_SESSION['user']['name']; ?>! What do you need to do today?</p>
+        <p class="px-20 pt-6"> Hi, <?php echo $_SESSION['user']['name']; ?>! What do you need to do today?</p>
     <?php else : ?>
         <a href="/signup.php">No account? Sign up here!</a>
     <?php endif; ?>
 
 </article>
 
-<div class="container">
-    <h2>My lists</h2>
+<div class="list-container px-20 pt-6">
+    <h1 class="font-bold text-2xl">My lists</h1>
     <!-- HERE WE LOOP ALL LISTS AND TASKS AVAILABLE FOR THE USER -->
     <!-- IF LIST DESCRIPTION IS THE SAME, PRINT THE TASKS. IF NOT, PRINT NEW LIST NAME AND FIRST TASK. -->
     <?php $listName = '';
     foreach ($userListsAndTasks as $userListAndTask) :
         if ($userListAndTask['list_desc'] !== $listName) : ?>
-            <h1><?= $userListAndTask['list_desc'] ?></h1>
-            <p><?= $userListAndTask['task_title'] ?></p>
+            <h2 class="font-bold text-xl"><?= $userListAndTask['list_desc'] ?></h2>
+            <p> <input class="text-3xl" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value=""><?= $userListAndTask['task_title'] ?></p>
         <?php else : ?>
-            <p><?= $userListAndTask['task_title'] ?></p>
+            <p> <input class="text-3xl" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value=""><?= $userListAndTask['task_title'] ?></p>
         <?php endif; ?>
         <?php $listName = $userListAndTask['list_desc']; ?>
     <?php endforeach; ?>
