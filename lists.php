@@ -56,9 +56,9 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
             <p><?= $userListAndTask['task_title'] ?></p>
         <?php else : ?>
             <p><?= $userListAndTask['task_title'] ?></p>
-    <?php endif;
-        $listName = $userListAndTask['list_desc'];
-    endforeach; ?>
+        <?php endif; ?>
+        <?php $listName = $userListAndTask['list_desc']; ?>
+    <?php endforeach; ?>
 
 
     <details>
@@ -68,8 +68,8 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
         <?php } ?>
     </details>
 
-    <a href="/create.php" class="btn btn-primary">Create new list!</a>
-    <a href="/create.php" class="btn btn-primary">Add task!</a>
+    <a href="/create.php" class="btn btn-success">Create new list!</a>
+    <a href="/create.php" class="btn btn-success">Add task!</a>
 
 
     <?php require __DIR__ . '/views/footer.php'; ?>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
 
     <div class="profile-container d-flex">
-        <a class="navbar-brand" href="#"><?php echo $config['title']; ?></a>
+        <a class="navbar-brand" href="index.php"><?php echo $config['title']; ?></a>
         <img class="avatar" src="<?= '/app/database/avatars/' . $_SESSION['user']['avatar'] ?>" alt="Profile avatar image">
     </div>
     <div class="nav-list-container">
