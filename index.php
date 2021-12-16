@@ -10,7 +10,7 @@ require __DIR__ . '/views/header.php';
 <article>
     <h1><?php echo $config['title']; ?></h1>
     <?php if (!isset($_SESSION['user'])) : ?>
-        <?PHP $_SESSION['message'] = "Welcome stranger!"; ?>
+        <?php $_SESSION['message'] = "Welcome stranger!"; ?>
         <?php echo $_SESSION['message']; ?>
     <?php endif ?>
     <br>
