@@ -35,29 +35,18 @@
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="/index.php" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/index.php" || $_SERVER['REQUEST_URI'] === "/") ? 'active' : "" ?>">Home</a>
-
                         <a href="/about.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === " /about.php") ? 'active' : "" ?>">About</a>
                         <?php if (isset($_SESSION['user'])) : ?>
-
                             <a href="/lists.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium<?php echo ($_SERVER['REQUEST_URI'] === "/lists.php") ? 'active' : "" ?>">Lists</a>
-
                             <?php if (isset($_SESSION['user'])) : ?>
-
                                 <a href="/profile.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/profile.php") ? 'active' : "" ?>">My profile</a>
-
                             <?php endif; ?>
                         <?php endif; ?>
-
                         <?php if (!isset($_SESSION['user'])) : ?>
-
                             <a href="/login.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/login.php") ? 'active' : "" ?>">Login</a>
-
                         <?php else : ?>
-
                             <a href="/logout.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log out</a>
-
                         <?php endif; ?>
-
                     </div>
                 </div>
             </div>
