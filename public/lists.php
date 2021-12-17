@@ -32,7 +32,7 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<!-- MY TASKS -->
+<!-- MY TASKLISTS -->
 <div class="flex flex-row">
     <div class="w-2/3 bg-gray-50 h-screen">
         <div class="p-2 pt-2">
@@ -52,18 +52,18 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="w-screen">
         <div class="px-3 pt-3">
-            <!-- Title -->
+
+            <!-- TITLE -->
             <div>
                 <div class="text-2xl"><span class="font-bold">Today</span></div>
             </div>
 
-            <!-- Todo List -->
+            <!-- TO-DO LIST -->
             <div class="pt-5">
-                <!-- Todo Item -->
+                <!-- TO-DO ITEM(S) -->
                 <?php $listName = '';
                 foreach ($userListsAndTasks as $userListAndTask) :
                     if ($userListAndTask['list_desc'] !== $listName) : ?>
-
                         <div class="flex flex-row pb-2">
                             <div class="flex items-center">
                                 <input class="text-3xl" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value="">
