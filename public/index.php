@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 require __DIR__ . '/app/autoload.php';
 require __DIR__ . '/views/header.php';
-
 ?>
 
 <article class="py-6 px-6">
@@ -36,9 +35,7 @@ require __DIR__ . '/views/header.php';
                             </a>
                         </div>
                 </form>
-
             <?php endif ?>
-            <br>
 
             <?php if (isset($_SESSION['user'])) : ?>
                 <h2 class="mb-1 text-xl">Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
