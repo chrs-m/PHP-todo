@@ -7,20 +7,46 @@ require __DIR__ . '/views/header.php';
 
 ?>
 
-<article>
-    <h1><?php echo $config['title']; ?></h1>
+<article class="py-6 px-6">
     <?php if (!isset($_SESSION['user'])) : ?>
         <?php $_SESSION['message'] = "Welcome stranger!"; ?>
-        <?php echo $_SESSION['message']; ?>
-    <?php endif ?>
-    <br>
+        <p class="text-center"> <?php echo $_SESSION['message']; ?></p>
+        <article class="flex justify-center">
+            <div class="flex mt-24 w-full max-w-xs">
+                <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="app/users/login.php" method="post">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                            E-mail
+                        </label>
+                        <input class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="email" name="email" id="email" placeholder="your@email.com" required>
+                        <small class="text-xs italic">Please provide your email address.</small>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2 mt-4" for="password">
+                                Password
+                            </label>
+                            <input class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password" id="password" placeholder="******************" required>
+                            <small class="text-xs italic">Please provide your password (passphrase).</small>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                Sign In
+                            </button>
+                            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                                Forgot Password?
+                            </a>
+                        </div>
+                </form>
 
-    <?php if (isset($_SESSION['user'])) : ?>
-        <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
-        <a href="/lists.php" class="btn btn-primary">Check and update lists!</a>
-    <?php else : ?>
-        <a href="/signup.php">No account? Sign up here!</a>
-    <?php endif; ?>
-</article>
+            <?php endif ?>
+            <br>
 
-<?php require __DIR__ . '/views/footer.php'; ?>
+            <?php if (isset($_SESSION['user'])) : ?>
+                <h2 class="mb-1 text-xl">Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
+                <p class="text-md mb-4">What do you need to accomplish today?</p>
+                <a href="/lists.php" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check and update lists!</a>
+            <?php else : ?>
+                <a href="/signup.php" class="block text-center text-pink-500">No account? Sign up here!</a>
+            <?php endif; ?>
+        </article>
+
+        <?php require __DIR__ . '/views/footer.php'; ?>
