@@ -27,14 +27,14 @@ require __DIR__ . '/views/header.php';
                     </div>
                 </div>
             </form>
-        <?php elseif (isset($_SESSION['user'])) : ?>
-            <h2 class="mb-1 text-xl">Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
-            <p class="text-md mb-4">What do you need to accomplish today?</p>
-            <a href="/lists.php" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check and update lists!</a>
-        <?php else : ?>
-            <a href="/signup.php" class="block text-center text-pink-500">No account? Sign up here!</a>
-        <?php endif; ?>
         </div>
+    <?php elseif (isset($_SESSION['user'])) : ?>
+        <h2 class="mb-1 text-xl">Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
+        <p class="text-md mb-4">What do you need to accomplish today?</p>
+        <a href="/lists.php" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check and update lists!</a>
+    <?php else : ?>
+        <a href="/signup.php" class="block text-center text-pink-500">No account? Sign up here!</a>
+    <?php endif; ?>
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?>
