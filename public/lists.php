@@ -32,40 +32,64 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<article>
-    <?php if (isLoggedIn()) : ?>
-        <p class="px-20 pt-6"> Hi, <?php echo $_SESSION['user']['name']; ?>! What do you need to do today?</p>
-    <?php else : ?>
-        <a href="/signup.php">No account? Sign up here!</a>
-    <?php endif; ?>
+<!-- MY TASKS -->
+<div class="flex flex-row">
+    <div class="w-2/3 bg-gray-50 h-screen">
+        <div class="p-2 pt-2">
+            <div class="pb-3">
+                <div class="font-bold">My Tasklists</div>
+            </div>
+            <div class="pb-3">
+                <?php $listName = '';
+                foreach ($userListsAndTasks as $userListAndTask) :
+                    if ($userListAndTask['list_desc'] !== $listName) : ?>
+                        <div class="hover:bg-gray-200 p-0.5 pl-1 rounded-lg"><a href="/"><?= $userListAndTask['list_desc'] ?></a></div>
+                    <?php endif; ?>
+                    <?php $listName = $userListAndTask['list_desc']; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <div class="w-screen">
+        <div class="px-3 pt-3">
+            <!-- Title -->
+            <div>
+                <div class="text-2xl"><span class="font-bold">Today</span></div>
+            </div>
 
-</article>
+            <!-- Todo List -->
+            <div class="pt-5">
+                <!-- Todo Item -->
+                <?php $listName = '';
+                foreach ($userListsAndTasks as $userListAndTask) :
+                    if ($userListAndTask['list_desc'] !== $listName) : ?>
 
-<div class="list-container px-20 pt-6">
-    <h1 class="font-bold text-2xl">My lists</h1>
-    <!-- HERE WE LOOP ALL LISTS AND TASKS AVAILABLE FOR THE USER -->
-    <!-- IF LIST DESCRIPTION IS THE SAME, PRINT THE TASKS. IF NOT, PRINT NEW LIST NAME AND FIRST TASK. -->
-    <?php $listName = '';
-    foreach ($userListsAndTasks as $userListAndTask) :
-        if ($userListAndTask['list_desc'] !== $listName) : ?>
-            <h2 class="font-bold text-xl"><?= $userListAndTask['list_desc'] ?></h2>
-            <p> <input class="text-3xl" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value=""><?= $userListAndTask['task_title'] ?></p>
-        <?php else : ?>
-            <p> <input class="text-3xl" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value=""><?= $userListAndTask['task_title'] ?></p>
-        <?php endif; ?>
-        <?php $listName = $userListAndTask['list_desc']; ?>
-    <?php endforeach; ?>
+                        <div class="flex flex-row pb-2">
+                            <div class="flex items-center">
+                                <input class="text-3xl" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value="">
+                            </div>
+                            <div class=" pl-4">
+                                <div class="text-gray-600 leading-none"><?= $userListAndTask['task_title'] ?></div>
+                                <div class="text-xs text-gray-400 leading-none"><?= $userListAndTask['task_description'] ?></div>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="flex flex-row pb-2">
+                            <div class="flex items-center">
+                                <input class="text-3xl" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value="">
+                            </div>
+                            <div class=" pl-4">
+                                <div class="text-gray-600 leading-none"><?= $userListAndTask['task_title'] ?></div>
+                                <div class="text-xs text-gray-400 leading-none"><?= $userListAndTask['task_description'] ?></div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php $listName = $userListAndTask['list_desc']; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-    <details>
-        <summary class="all-tasks mt-2">All my tasks</summary>
-        <?php foreach ($userListsAndTasks as $userListAndTask) { ?>
-            <input type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" <label for="<?= $userListAndTask['task_title'] ?>"><?= $userListAndTask['task_title'] ?></label>
-        <?php } ?>
-    </details>
-
-    <a href="/create.php" class="btn btn-success">Create new list!</a>
-    <a href="/create.php" class="btn btn-success">Add task!</a>
-
-
-    <?php require __DIR__ . '/views/footer.php'; ?>
+<?php require __DIR__ . '/views/footer.php'; ?>
