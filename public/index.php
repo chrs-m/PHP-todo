@@ -26,8 +26,7 @@ require __DIR__ . '/views/header.php';
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Sign In</button>
                             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
                         </div>
-                </form>
-            <?php elseif (isset($_SESSION['user'])) : ?>
+                </form> <?php elseif (isset($_SESSION['user'])) : ?>
                 <h2 class="mb-1 text-xl">Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
                 <p class="text-md mb-4">What do you need to accomplish today?</p>
                 <a href="/lists.php" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check and update lists!</a>
