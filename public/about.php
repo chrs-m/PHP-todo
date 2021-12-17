@@ -1,7 +1,7 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
-<article class="py-6 px-6">
+<article class="py-6 px-6 lg:text-center">
     <h1 class="text-2xl font-bold mb-2 underline decoration-sky-500">About</h1>
     <p>We want to make your life easier by helping you check those tickboxes!</p>
 

@@ -644,6 +644,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 80rem;
 }
 
+.max-w-lg {
+  max-width: 32rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -907,6 +911,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .font-bold {
@@ -1352,8 +1361,39 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 1024px) {
+  .lg\:max-w-lg {
+    max-width: 32rem;
+  }
+
+  .lg\:max-w-2xl {
+    max-width: 42rem;
+  }
+
+  .lg\:max-w-3xl {
+    max-width: 48rem;
+  }
+
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .lg\:text-center {
+    text-align: center;
+  }
+
+  .lg\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
