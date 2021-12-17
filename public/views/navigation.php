@@ -36,15 +36,15 @@
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="/index.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium  <?php echo ($_SERVER['REQUEST_URI'] === "/index.php" || $_SERVER['REQUEST_URI'] === "/") ? 'active' : "" ?>">Home</a>
 
-                        <a href="/lists.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium<?php echo ($_SERVER['REQUEST_URI'] === "/lists.php") ? 'active' : "" ?>">Lists</a>
+                        <a href="/lists2.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium<?php echo ($_SERVER['REQUEST_URI'] === "/lists2.php") ? 'active' : "" ?>">Lists</a>
 
-                        <?php if (isset($_SESSION['user'])) : ?>
-                            <?php if (isset($_SESSION['user'])) : ?>
+                        <?php if (isLoggedIn()) : ?>
+                            <?php if (isLoggedIn()) : ?>
                                 <a href="/profile.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/profile.php") ? 'active' : "" ?>">My profile</a>
                             <?php endif; ?>
                         <?php endif; ?>
                         <a href="/about.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === " /about.php") ? 'active' : "" ?>">About</a>
-                        <?php if (!isset($_SESSION['user'])) : ?>
+                        <?php if (!isLoggedIn()) : ?>
                             <a href="/login.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/login.php") ? 'active' : "" ?>">Login</a>
                         <?php else : ?>
                             <a href="/logout.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log out</a>
@@ -58,7 +58,7 @@
                 <div>
                     <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                         <span class="sr-only">Open user menu</span>
-                        <?php if (isset($_SESSION['user'])) : ?>
+                        <?php if (isLoggedIn()) : ?>
                             <img class="avatar h-8 w-8 rounded-full hover:border-solid hover:border-2 hover:border-gray-100" src="<?= '/app/database/avatars/' . $_SESSION['user']['avatar'] ?>" alt="Profile avatar image">
                         <?php endif; ?>
                     </button>
@@ -90,14 +90,14 @@
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="/index.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium  <?php echo ($_SERVER['REQUEST_URI'] === "/index.php" || $_SERVER['REQUEST_URI'] === "/") ? 'active' : "" ?>">Home</a>
 
-            <?php if (isset($_SESSION['user'])) : ?>
-                <a href="/lists.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium<?php echo ($_SERVER['REQUEST_URI'] === "/lists.php") ? 'active' : "" ?>">Lists</a>
-                <?php if (isset($_SESSION['user'])) : ?>
+            <?php if (isLoggedIn()) : ?>
+                <a href="/lists2.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium<?php echo ($_SERVER['REQUEST_URI'] === "/lists2.php") ? 'active' : "" ?>">Lists</a>
+                <?php if (isLoggedIn()) : ?>
                     <a href="/profile.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/profile.php") ? 'active' : "" ?>">My profile</a>
                 <?php endif; ?>
             <?php endif; ?>
             <a href="/about.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === " /about.php") ? 'active' : "" ?>">About</a>
-            <?php if (!isset($_SESSION['user'])) : ?>
+            <?php if (!isLoggedIn()) : ?>
                 <a href="/login.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/login.php") ? 'active' : "" ?>">Login</a>
             <?php else : ?>
                 <a href="/logout.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log out</a>

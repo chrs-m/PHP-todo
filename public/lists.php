@@ -33,7 +33,7 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <article>
-    <?php if (isset($_SESSION['user'])) : ?>
+    <?php if (isLoggedIn()) : ?>
         <p class="px-20 pt-6"> Hi, <?php echo $_SESSION['user']['name']; ?>! What do you need to do today?</p>
     <?php else : ?>
         <a href="/signup.php">No account? Sign up here!</a>

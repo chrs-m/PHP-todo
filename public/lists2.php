@@ -51,7 +51,7 @@ $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
     <div class="w-screen">
-        <div class="px-20 pt-6">
+        <div class="px-6 pt-6">
             <!-- Title -->
             <div>
                 <div class="text-3xl"><span class="font-bold">Today</span></div>

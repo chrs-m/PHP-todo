@@ -7,7 +7,7 @@ require __DIR__ . '/views/header.php';
 ?>
 
 <article class="py-6 px-6">
-    <?php if (!isset($_SESSION['user'])) : ?>
+    <?php if (!isLoggedIn()) : ?>
         <?php $_SESSION['message'] = "Welcome stranger!"; ?>
         <p class="text-center"> <?php echo $_SESSION['message']; ?></p>
         <div class="flex mt-24 w-full max-w-xs">
@@ -28,7 +28,7 @@ require __DIR__ . '/views/header.php';
                 </div>
             </form>
         </div>
-    <?php elseif (isset($_SESSION['user'])) : ?>
+    <?php elseif (isLoggedIn()) : ?>
         <h2 class="mb-1 text-xl">Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
         <p class="text-md mb-4">What do you need to accomplish today?</p>
         <a href="/lists.php" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check and update lists!</a>
