@@ -72,7 +72,7 @@
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
           -->
-                <div class="hidden profile-menu absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                <div class="hidden profile-menu absolute right-0 mt-2 w-48 rounded-md shadow-xl drop-shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <!-- Active: "bg-gray-100", Not Active: "" -->
                     <a href="/profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:text-gray-100 hover:bg-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">My Profile</a>
                     <a href="/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:text-gray-100 hover:bg-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
@@ -83,16 +83,22 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="hidden mobile-menu" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1">
+    <div class="hidden mobile-menu bg-gray-700" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 text-center">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+            <a href="/index.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium  <?php echo ($_SERVER['REQUEST_URI'] === "/index.php" || $_SERVER['REQUEST_URI'] === "/") ? 'active' : "" ?>">Home</a>
+            <a href="/about.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === " /about.php") ? 'active' : "" ?>">About</a>
+            <?php if (isset($_SESSION['user'])) : ?>
+                <a href="/lists.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium<?php echo ($_SERVER['REQUEST_URI'] === "/lists.php") ? 'active' : "" ?>">Lists</a>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <a href="/profile.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/profile.php") ? 'active' : "" ?>">My profile</a>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if (!isset($_SESSION['user'])) : ?>
+                <a href="/login.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/login.php") ? 'active' : "" ?>">Login</a>
+            <?php else : ?>
+                <a href="/logout.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log out</a>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
