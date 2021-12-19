@@ -31,8 +31,8 @@ require __DIR__ . '/views/header.php';
         </div>
     </article>
 
-<?php elseif (isLoggedIn()) :
-
+<?php elseif (isLoggedIn()) : ?>
+    <?php
     $userId = $_SESSION['user']['id'];
 
     // QUERY TO GET ALL LISTS AND TASKS FOR THE USER
@@ -57,10 +57,7 @@ require __DIR__ . '/views/header.php';
     $statement->bindParam(':id', $userId, PDO::PARAM_INT);
     $statement->execute();
     $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    // $_GET['id'] = 1;
-    // die(var_dump($_GET));
-?>
+    ?>
 
     <!-- MY TASKLISTS -->
     <div class="grid grid-cols-3">
