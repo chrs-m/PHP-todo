@@ -44,12 +44,10 @@
 
 
         <button type="submit" class="inline-block mt-2 text-sm mr-4 py-2 px-4 rounded-full border-0 font-semibold bg-blue-600 text-white hover:bg-green-700">Sign up!</button>
-        <form action="/index.php">
-            <input type="submit" value="Back" class="inline-block mt-2 text-sm mr-4 py-2 px-4 rounded-full border-0 font-semibold bg-blue-400 text-white hover:bg-fuchsia-400 mb-6" />
-        </form>
+        <a href="/index.php" class="inline-block mt-2 text-sm mr-4 py-2 px-4 rounded-full border-0 font-semibold bg-blue-400 text-white hover:bg-fuchsia-400 mb-6">Back</a>
     </form>
 
-    <a class="text-blue-300" href="/login.php">Already have an account? Sign in here!</a>
+    <a class="text-blue-300 hover:text-fuchsia-400" href="/login.php">Already have an account? Sign in here!</a>
 </article>
 
 

@@ -487,9 +487,35 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 0px;
 }
 
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.row-span-1 {
+  grid-row: span 1 / span 1;
+}
+
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mb-2 {
@@ -608,6 +634,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2rem;
 }
 
+.h-\[24px\] {
+  height: 24px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -630,6 +660,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-48 {
   width: 12rem;
+}
+
+.w-\[12px\] {
+  width: 12px;
+}
+
+.w-\[20px\] {
+  width: 20px;
+}
+
+.w-\[24px\] {
+  width: 24px;
 }
 
 .max-w-xs {
@@ -674,12 +716,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
 
 .flex-col {
   flex-direction: column;
+}
+
+.place-content-evenly {
+  place-content: space-evenly;
+}
+
+.content-evenly {
+  align-content: space-evenly;
 }
 
 .items-center {
@@ -692,6 +746,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-items-start {
+  justify-items: start;
 }
 
 .justify-items-center {
@@ -841,6 +899,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.25rem;
 }
 
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -897,6 +960,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   vertical-align: baseline;
 }
 
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -925,6 +996,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .font-bold {
@@ -1014,6 +1095,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 .decoration-pink-500 {
   -webkit-text-decoration-color: #ec4899;
           text-decoration-color: #ec4899;
+}
+
+.decoration-indigo-500 {
+  -webkit-text-decoration-color: #6366f1;
+          text-decoration-color: #6366f1;
+}
+
+.decoration-indigo-700 {
+  -webkit-text-decoration-color: #4338ca;
+          text-decoration-color: #4338ca;
+}
+
+.decoration-fuchsia-700 {
+  -webkit-text-decoration-color: #a21caf;
+          text-decoration-color: #a21caf;
+}
+
+.decoration-fuchsia-600 {
+  -webkit-text-decoration-color: #c026d3;
+          text-decoration-color: #c026d3;
 }
 
 .opacity-0 {
@@ -1229,6 +1330,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(232 121 249 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
 .hover\:text-blue-800:hover {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
@@ -1242,6 +1348,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-gray-100:hover {
   --tw-text-opacity: 1;
   color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
+.hover\:text-fuchsia-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(232 121 249 / var(--tw-text-opacity));
 }
 
 .hover\:file\:bg-blue-100::-webkit-file-upload-button:hover {

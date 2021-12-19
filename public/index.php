@@ -9,7 +9,7 @@ require __DIR__ . '/views/header.php';
 <article class="py-6 px-6 grid justify-items-center">
     <?php if (!isLoggedIn()) : ?>
         <?php $_SESSION['message'] = "Welcome stranger!"; ?>
-        <p class=""> <?php echo $_SESSION['message']; ?></p>
+        <p class="font-bold text-2xl underline decoration-indigo-700"> <?php echo $_SESSION['message']; ?></p>
         <div class="mt-24 w-full max-w-xs">
             <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="app/users/login.php" method="post">
                 <div class="mb-4">
