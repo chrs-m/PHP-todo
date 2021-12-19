@@ -495,6 +495,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-column: span 2 / span 2;
 }
 
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
 .row-span-1 {
   grid-row: span 1 / span 1;
 }

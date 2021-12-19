@@ -33,34 +33,13 @@ require __DIR__ . '/views/header.php';
 
 <?php elseif (isLoggedIn()) : ?>
     <?php
-    $userId = $_SESSION['user']['id'];
+    // A QUERY TO GET ALL LISTS AND TASKS FOR THE USER
+    getAllListsAndTasks($database, $_SESSION['user']['id']);
 
-    // QUERY TO GET ALL LISTS AND TASKS FOR THE USER
-    $statement = $database->prepare('SELECT
-    lists.id AS list_id,
-    lists.description AS list_desc,
-    tasks.title AS task_title,
-    tasks.description as task_description,
-    tasks.user_id AS task_user_id,
-    tasks.id AS task_id,
-    REPLACE (tasks.deadline, "T", " ") as task_deadline,
-    tasks.created AS task_created,
-    tasks.updated AS task_updated,
-    tasks.list_id AS task_list_id,
-    tasks.completed AS task_completed
-    FROM
-    lists
-    INNER JOIN users ON lists.user_id = users.id
-    LEFT JOIN tasks ON lists.id = tasks.list_id
-    WHERE lists.user_id = :id
-    ORDER BY list_desc ASC;');
-    $statement->bindParam(':id', $userId, PDO::PARAM_INT);
-    $statement->execute();
-    $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <!-- MY TASKLISTS -->
-    <div class="grid grid-cols-3">
+    <div style="display: grid; grid-template: minmax(20vw, 100%) 1fr/ auto 1fr" class="">
         <div class="bg-gray-50 h-screen col-span-1">
             <div class="p-2 pt-2">
                 <div class="pb-3">
@@ -68,56 +47,44 @@ require __DIR__ . '/views/header.php';
                 </div>
                 <div class="pb-3">
                     <?php $listName = '';
-                    foreach ($userListsAndTasks as $userListAndTask) :
-                        if ($userListAndTask['list_desc'] !== $listName) : ?>
-                            <div class="hover:bg-gray-200 p-0.5 pl-1 rounded-lg"><a href="?id=<?= $userListAndTask['list_id'] ?>"><?= $userListAndTask['list_desc'] ?></a></div>
+                    foreach (getAllListsAndTasks($database, $_SESSION['user']['id']) as $userLists) :
+                        if ($userLists['list_desc'] !== $listName) : ?>
+                            <div class="hover:bg-gray-200 p-0.5 pl-1 rounded-lg"><a href="?id=<?= $userLists['list_id'] ?>"><?= $userLists['list_desc'] ?></a></div>
                         <?php endif; ?>
-                        <?php $listName = $userListAndTask['list_desc']; ?>
+                        <?php $listName = $userLists['list_desc']; ?>
                     <?php endforeach; ?>
                 </div>
             </div>
         </div>
-        <div class="w-screen grid">
+        <div class="w-full grid">
             <div class="px-2 py-2">
 
                 <!-- TITLE -->
                 <div>
-                    <div class="text-2xl"><span class="font-bold">To-do:</span></div>
+                    <div class="text-2xl"><span class="font-bold">
+                            <p><?php getListNameFromId($database, $_GET['id']) ?></p>
+                            <?php die(var_dump(getListNameFromId($database, $_GET['id']))); ?>
+                        </span></div>
                 </div>
 
                 <!-- TO-DO LIST -->
-                <div class="pt-5 grid justify-items-start col-span-2">
+                <div class="pt-5 grid justify-items-start">
                     <!-- TO-DO ITEM(S) -->
-                    <?php $listName = '';
-                    foreach ($userListsAndTasks as $userListAndTask) :
-                        if ($userListAndTask['task_list_id'] === $_GET['id']) : ?>
-                            <div class="flex flex-row py-2">
-                                <div class="flex items-center">
-                                    <input style="width:25px; height:25px; background:white; border-radius:8px; border:2px solid #555;" class="" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value="">
-                                </div>
-                                <div class="pl-4">
-                                    <div class="text-gray-600 leading-none font-bold"><?= $userListAndTask['task_title'] ?></div>
-                                    <div class="text-xs text-gray-400 leading-none"><?= $userListAndTask['task_description'] . ", " . $userListAndTask['task_deadline']  ?></div>
-                                </div>
+                    <?php
+                    foreach (getAllTasksFromList($database, $_GET['id']) as $tasks) : ?>
+                        <div class="flex flex-row py-2">
+                            <div class="flex items-center">
+                                <input style="width:25px; height:25px; background:white; border-radius:8px; border:2px solid #555;" class="" type="checkbox" id="<?= $tasks['task_title'] ?>" name="<?= $tasks['task_title'] ?>" value="">
                             </div>
-                        <?php else : ?>
-                            <div class="flex flex-row py-2">
-                                <div class="flex items-center">
-                                    <input style="width:25px; height:25px; background:white; border-radius:8px; border:2px solid #555;" class="" type="checkbox" id="<?= $userListAndTask['task_title'] ?>" name="<?= $userListAndTask['task_title'] ?>" value="">
-                                </div>
-                                <div class=" pl-4">
-                                    <div class="text-gray-600 leading-none font-bold"><?= $userListAndTask['task_title'] ?></div>
-                                    <div class="text-xs text-gray-400 leading-none"><?= $userListAndTask['task_description'] . ", <br>" . $userListAndTask['task_deadline']  ?></div>
-                                </div>
+                            <div class="pl-4">
+                                <div class="text-gray-600 leading-none font-bold"><?= $tasks['task_title'] ?></div>
+                                <div class="text-xs text-gray-400 leading-none"><?= $tasks['task_description'] . ", " . $tasks['task_deadline']  ?></div>
                             </div>
-                        <?php endif; ?>
-                        <?php $listName = $userListAndTask['task_list_id']; ?>
+                        </div>
                     <?php endforeach; ?>
                 </div>
             </div>
         </div>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
 
-
-<?php require __DIR__ . '/views/footer.php'; ?>
+    <?php require __DIR__ . '/views/footer.php'; ?>
