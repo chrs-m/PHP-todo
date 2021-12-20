@@ -6,6 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 
 // In this file we login users.
+
 if (isset($_POST['email'], $_POST['password'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
@@ -23,7 +24,7 @@ if (isset($_POST['email'], $_POST['password'])) {
             "name" => $user['name'],
             "username" => $user['username'],
             "email" => $user['email'],
-            "avatar" => $user['avatar'],
+            "avatar" => empty($user['avatar']) ? 'profile-icon.png' : $user['avatar'],
         ];
         redirect('/lists.php');
     } else {

@@ -32,7 +32,7 @@ if (isLoggedIn()) {
  * @param mixed $userId
  * @return mixed
  */
-function getAllListsAndTasks($database, $userId)
+function getAllListsAndTasks(pdo $database, int $userId): array
 {
     $statement = $database->prepare('SELECT
     lists.id AS list_id,
@@ -64,7 +64,7 @@ function getAllListsAndTasks($database, $userId)
  * @param mixed $id
  * @return mixed
  */
-function getAllTasksFromList($database, $id)
+function getAllTasksFromList(pdo $database, string $id): array
 {
     $statement = $database->prepare('SELECT
     tasks.title AS task_title,
@@ -90,7 +90,7 @@ function getAllTasksFromList($database, $id)
  * @param mixed $id
  * @return mixed
  */
-function getListNameFromId($database, $id)
+function getListNameFromId(pdo $database, string $id): array
 {
     $statement = $database->prepare('SELECT
     lists.id AS list_id,

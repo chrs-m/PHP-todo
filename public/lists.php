@@ -60,29 +60,35 @@ require __DIR__ . '/views/header.php';
             <div class="px-2 py-2">
 
                 <!-- TITLE -->
-                <div>
-                    <div class="text-2xl"><span class="font-bold">
+                <div class="text-2xl"><span class="font-bold">
+                        <?php if (!isset($_GET['id'])) : ?>
+                            <p>Please choose a list to check of those tasks!</p>
+                        <?php else : ?>
                             <?php foreach (getListNameFromId($database, $_GET['id']) as $listName) : ?>
                                 <h2><?= $listName['list_desc'] ?></h2>
                             <?php endforeach; ?>
-                        </span></div>
+                        <?php endif; ?>
+                    </span>
                 </div>
 
                 <!-- TO-DO LIST -->
                 <div class="pt-5 grid justify-items-start">
                     <!-- TO-DO ITEM(S) -->
-                    <?php
-                    foreach (getAllTasksFromList($database, $_GET['id']) as $tasks) : ?>
-                        <div class="flex flex-row py-2">
-                            <div class="flex items-center">
-                                <input style="width:25px; height:25px; background:white; border-radius:8px; border:2px solid #555;" class="" type="checkbox" id="<?= $tasks['task_title'] ?>" name="<?= $tasks['task_title'] ?>" value="">
+                    <?php if (!isset($_GET['id'])) : ?>
+                        <p>Today is the perfect day for things to be done!</p>
+                    <?php else : ?>
+                        <?php foreach (getAllTasksFromList($database, $_GET['id']) as $tasks) : ?>
+                            <div class="flex flex-row py-2">
+                                <div class="flex items-center">
+                                    <input style="width:25px; height:25px; background:white; border-radius:8px; border:2px solid #555;" class="" type="checkbox" id="<?= $tasks['task_title'] ?>" name="<?= $tasks['task_title'] ?>" value="">
+                                </div>
+                                <div class="pl-4">
+                                    <div class="text-gray-600 leading-none font-bold"><?= $tasks['task_title'] ?></div>
+                                    <div class="text-xs text-gray-400 leading-none"><?= $tasks['task_description'] . "<br>" . $tasks['task_deadline']  ?></div>
+                                </div>
                             </div>
-                            <div class="pl-4">
-                                <div class="text-gray-600 leading-none font-bold"><?= $tasks['task_title'] ?></div>
-                                <div class="text-xs text-gray-400 leading-none"><?= $tasks['task_description'] . ", " . $tasks['task_deadline']  ?></div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
