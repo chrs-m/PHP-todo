@@ -62,8 +62,9 @@ require __DIR__ . '/views/header.php';
                 <!-- TITLE -->
                 <div>
                     <div class="text-2xl"><span class="font-bold">
-                            <p><?php getListNameFromId($database, $_GET['id']) ?></p>
-                            <?php die(var_dump(getListNameFromId($database, $_GET['id']))); ?>
+                            <?php foreach (getListNameFromId($database, $_GET['id']) as $listName) : ?>
+                                <h2><?= $listName['list_desc'] ?></h2>
+                            <?php endforeach; ?>
                         </span></div>
                 </div>
 
@@ -85,6 +86,7 @@ require __DIR__ . '/views/header.php';
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 
-    <?php require __DIR__ . '/views/footer.php'; ?>
+<?php require __DIR__ . '/views/footer.php'; ?>
