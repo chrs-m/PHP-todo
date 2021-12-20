@@ -85,7 +85,7 @@ require __DIR__ . '/views/header.php';
                                     <div class="<?= $tasks['task_completed'] === 'true' ? 'text-green-600 line-through' : 'text-gray-600 leading-none font-bold' ?>"><?= $tasks['task_title'] ?></div>
                                     <div class=" text-xs text-gray-400 leading-none"><?php if ($tasks['task_description'] !== null) : ?>
                                             <?= $tasks['task_description'] . "<br>"; ?>
-                                        <?php endif ?>
+                                        <?php endif; ?>
                                         <?php if ($tasks['task_deadline'] !== null && $tasks['task_deadline'] < date('Y-m-d H:i')) : ?>
                                             <p class="<?= $tasks['task_completed'] === 'true' ? 'text-green-600 line-through' : "text-rose-500" ?>"><?= $tasks['task_deadline'] ?></p>
                                         <?php elseif ($tasks['task_deadline'] !== null) : ?>
