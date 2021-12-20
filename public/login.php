@@ -8,7 +8,7 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                     E-mail
                 </label>
-                <input class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="email" name="email" id="email" placeholder="your@email.com" required>
+                <input class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="email" name="email" id="email" placeholder="your@email.com" required>
                 <small class="text-xs italic">Please provide your email address.</small>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2 mt-4" for="password">

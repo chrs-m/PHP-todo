@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/app/autoload.php';
 require __DIR__ . '/views/header.php';
 ?>
-
+<!-- IF THE USER IS NOT LOGGED IN, THE LOGIN PAGE WILL SHOW -->
 <?php if (!isLoggedIn()) : ?>
     <article class="py-6 px-6 grid justify-items-center">
         <?php $_SESSION['message'] = "Welcome stranger!"; ?>
@@ -31,6 +31,7 @@ require __DIR__ . '/views/header.php';
         </div>
     </article>
 
+    <!-- IF THE USER IS LOGGED IN, THE LIST VIEW WILL BE SHOWN -->
 <?php elseif (isLoggedIn()) : ?>
     <?php
     // A QUERY TO GET ALL LISTS AND TASKS FOR THE USER
@@ -54,13 +55,14 @@ require __DIR__ . '/views/header.php';
                         <?php $listName = $userLists['list_desc']; ?>
                     <?php endforeach; ?>
                 </div>
+                <a href="/create.php" class="bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add list!</a>
             </div>
         </div>
         <div class="w-full grid">
             <div class="px-2 py-2">
 
                 <!-- TITLE -->
-                <div class="text-2xl"><span class="font-bold">
+                <div class="text-2xl px-2"><span class="font-bold">
                         <?php if (!isset($_GET['id'])) : ?>
                             <p>Please choose a list to check of those tasks!</p>
                         <?php else : ?>
@@ -72,15 +74,15 @@ require __DIR__ . '/views/header.php';
                 </div>
 
                 <!-- TO-DO LIST -->
-                <div class="pt-5 grid justify-items-start">
+                <div class="mt-2 px-2 grid justify-items-start">
                     <!-- TO-DO ITEM(S) -->
                     <?php if (!isset($_GET['id'])) : ?>
                         <p>Today is the perfect day for things to be done!</p>
                     <?php else : ?>
                         <?php foreach (getAllTasksFromList($database, $_GET['id']) as $tasks) : ?>
-                            <div class="flex flex-row py-2">
+                            <div class="flex flex-row py-2 px-2 hover:bg-gray-200 rounded-md">
                                 <div class="flex items-center">
-                                    <input style="width:25px; height:25px; background:white; border-radius:8px; border:2px solid #555;" class="" type="checkbox" id="<?= $tasks['task_title'] ?>" name="<?= $tasks['task_title'] ?>" value="">
+                                    <input style="width:32px; height:32px; background:white; border-radius:8px; border:2px solid #555; margin-left: 6px;" class="" type="checkbox" id="<?= $tasks['task_title'] ?>" name="<?= $tasks['task_title'] ?>" value="">
                                 </div>
                                 <div class="pl-4">
                                     <div class="text-gray-600 leading-none font-bold"><?= $tasks['task_title'] ?></div>
@@ -89,6 +91,7 @@ require __DIR__ . '/views/header.php';
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
+                    <a href="/create.php" class="bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add task!</a>
                 </div>
             </div>
         </div>
