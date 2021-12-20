@@ -80,13 +80,28 @@ require __DIR__ . '/views/header.php';
                         <p>Today is the perfect day for things to be done!</p>
                     <?php else : ?>
                         <?php foreach (getAllTasksFromList($database, $_GET['id']) as $tasks) : ?>
-                            <div class="flex flex-row py-2 px-2 hover:bg-gray-200 rounded-md">
-                                <div class="flex items-center">
-                                    <input style="width:32px; height:32px; background:white; border-radius:8px; border:2px solid #555; margin-left: 6px;" class="" type="checkbox" id="<?= $tasks['task_title'] ?>" name="<?= $tasks['task_title'] ?>" value="">
-                                </div>
+                            <div class="task-container flex flex-row justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md w-96">
                                 <div class="pl-4">
-                                    <div class="text-gray-600 leading-none font-bold"><?= $tasks['task_title'] ?></div>
-                                    <div class="text-xs text-gray-400 leading-none"><?= $tasks['task_description'] . "<br>" . $tasks['task_deadline']  ?></div>
+                                    <div class="<?= $tasks['task_completed'] === 'true' ? 'text-green-600 line-through' : 'text-gray-600 leading-none font-bold' ?>"><?= $tasks['task_title'] ?></div>
+                                    <div class=" text-xs text-gray-400 leading-none"><?php if ($tasks['task_description'] !== null) : ?>
+                                            <?= $tasks['task_description'] . "<br>"; ?>
+                                        <?php endif ?>
+                                        <?php if ($tasks['task_deadline'] !== null && $tasks['task_deadline'] < date('Y-m-d H:i')) : ?>
+                                            <p class="<?= $tasks['task_completed'] === 'true' ? 'text-green-600 line-through' : "text-rose-500" ?>"><?= $tasks['task_deadline'] ?></p>
+                                        <?php elseif ($tasks['task_deadline'] !== null) : ?>
+                                            <p><?= $tasks['task_deadline'] ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <form action="app/tasks/complete.php" method="POST">
+                                        <button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-2 my-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
+                                        <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
+                                    </form>
+                                    <form action="app/lists/delete.php" method="post">
+                                        <input type="hidden" id="task_delete" name="task_delete" value="<?= $tasks['task_id'] ?>">
+                                        <button type="submit" class="task-btn hidden w-14 bg-rose-500 hover:bg-rose-700 text-white text-xs font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         <?php endforeach; ?>
