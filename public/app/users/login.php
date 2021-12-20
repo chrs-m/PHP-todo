@@ -24,7 +24,7 @@ if (isset($_POST['email'], $_POST['password'])) {
             "name" => $user['name'],
             "username" => $user['username'],
             "email" => $user['email'],
-            "avatar" => empty($user['avatar']) ? 'profile-icon.png' : $user['avatar'],
+            "avatar" => $user['avatar'] ?? 'profile-icon.png',
         ];
         redirect('/lists.php');
     } else {

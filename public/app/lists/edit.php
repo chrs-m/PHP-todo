@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-$id = $_POST['task_id'];
-
+$id = $_POST['dropdown-list-id'];
+$desc = $_POST['new-list-description'];
 
 $statement = $database->prepare(
-    'DELETE FROM tasks WHERE id = :id'
+    'UPDATE lists SET description = :desc WHERE id = :id'
 );
 $statement->bindParam(':id', $id, PDO::PARAM_INT);
+$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
+
 
 $statement->execute();
 $user = $statement->fetch(PDO::FETCH_ASSOC);

@@ -80,10 +80,11 @@ require __DIR__ . '/views/header.php';
                         <p>Today is the perfect day for things to be done!</p>
                     <?php else : ?>
                         <?php foreach (getAllTasksFromList($database, $_GET['id']) as $tasks) : ?>
-                            <div class="task-container flex flex-row justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md w-96">
+                            <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                 <div class="pl-4">
                                     <div class="<?= $tasks['task_completed'] === 'true' ? 'text-green-600 line-through' : 'text-gray-600 leading-none font-bold' ?>"><?= $tasks['task_title'] ?></div>
-                                    <div class=" text-xs text-gray-400 leading-none"><?php if ($tasks['task_description'] !== null) : ?>
+                                    <div class=" text-xs text-gray-400 leading-none">
+                                        <?php if ($tasks['task_description'] !== null) : ?>
                                             <?= $tasks['task_description'] . "<br>"; ?>
                                         <?php endif; ?>
                                         <?php if ($tasks['task_deadline'] !== null && $tasks['task_deadline'] < date('Y-m-d H:i')) : ?>
@@ -93,14 +94,18 @@ require __DIR__ . '/views/header.php';
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="">
+                                <div class="flex pl-4">
                                     <form action="app/tasks/complete.php" method="POST">
-                                        <button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-2 my-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
+                                        <button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
                                         <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
                                     </form>
-                                    <form action="app/lists/delete.php" method="post">
-                                        <input type="hidden" id="task_delete" name="task_delete" value="<?= $tasks['task_id'] ?>">
-                                        <button type="submit" class="task-btn hidden w-14 bg-rose-500 hover:bg-rose-700 text-white text-xs font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                    <form action="app/tasks/delete.php" method="post">
+                                        <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
+                                        <button type="submit" class="task-btn hidden w-14 bg-rose-500 hover:bg-rose-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                    </form>
+                                    <form action="/edit.php" method="post">
+                                        <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
+                                        <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-yellow-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
                                     </form>
                                 </div>
                             </div>
