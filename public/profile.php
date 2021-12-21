@@ -32,9 +32,11 @@ require __DIR__ . '/views/header.php';
     </article>
 
 <?php elseif (isLoggedIn()) : ?>
-    <h2 class="text-2xl font-bold mb-2">Hi, <?php echo $_SESSION['user']['name']; ?>!</h2>
-    <img class="avatar rounded-full h-24 mb-6" src="<?= '/app/database/avatars/' . $_SESSION['user']['avatar'] ?>" alt="Profile avatar image">
-    <p class="text-xs sm:text-base">Here you can update your avatar, e-mail and/or password down below. 👇</p>
+    <div class="px-6 py-6">
+        <h2 class="text-2xl font-bold mb-2">Hi, <?php echo $_SESSION['user']['name']; ?>!</h2>
+        <img class="avatar rounded-full h-24 mb-6" src="<?= '/app/database/avatars/' . $_SESSION['user']['avatar'] ?>" alt="Profile avatar image">
+        <p class="text-xs sm:text-base">Here you can update your avatar, e-mail and/or password down below. 👇</p>
+    </div>
 
     <article class="update-info-container px-6 py-6">
         <form action="app/users/update/avatar.php" method="post" enctype="multipart/form-data">

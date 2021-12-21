@@ -32,7 +32,10 @@ require __DIR__ . '/views/header.php';
     <?php elseif (isLoggedIn()) : ?>
         <h2 class="mb-1 text-xl">Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
         <p class="text-md mb-4">What do you need to accomplish today?</p>
-        <a href="/lists.php" class="bg-blue-500 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Check and update lists!</a>
+        <a href="/lists.php" class="bg-sky-600 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Go to your lists and tasks!</a>
+        <svg class="w-72 mt-24 fill-sky-400" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <path d="M400,48H112a64.07,64.07,0,0,0-64,64V400a64.07,64.07,0,0,0,64,64H400a64.07,64.07,0,0,0,64-64V112A64.07,64.07,0,0,0,400,48ZM364.25,186.29l-134.4,160a16,16,0,0,1-12,5.71h-.27a16,16,0,0,1-11.89-5.3l-57.6-64a16,16,0,1,1,23.78-21.4l45.29,50.32L339.75,165.71a16,16,0,0,1,24.5,20.58Z" />
+        </svg>
     <?php endif; ?>
 </article>
 

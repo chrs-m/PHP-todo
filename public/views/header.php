@@ -8,8 +8,7 @@
     <title><?php echo $config['title']; ?></title>
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/assets/styles/tailwind/style.css">
-    <link rel="stylesheet" href="/assets/styles/colors.css">
-    <link rel="stylesheet" href="/assets/styles/buttons.css">
+    <!-- <link rel="stylesheet" href="/assets/styles/colors.css"> -->
 </head>
 
 <body>

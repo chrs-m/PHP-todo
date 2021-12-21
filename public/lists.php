@@ -38,19 +38,20 @@ require __DIR__ . '/views/header.php';
         <div class="bg-gray-50 h-screen col-span-1">
             <div class="p-2 pt-2">
                 <div class="pb-3">
-                    <div class="font-bold underline decoration-fuchsia-600 text-lg">My Tasklists</div>
+                    <div class="font-bold underline decoration-2 decoration-fuchsia-600 text-lg">My Tasklists</div>
                 </div>
                 <div class="pb-3">
                     <?php $listName = '';
                     foreach (getAllListsAndTasks($database, $_SESSION['user']['id']) as $userLists) :
                         if ($userLists['list_desc'] !== $listName) : ?>
-                            <div class="hover:bg-gray-200 hover:underline hover:decoration-fuchsia-600 p-0.5 pl-1 rounded-lg"><a href="?id=<?= $userLists['list_id'] ?>"><?= $userLists['list_desc'] ?></a></div>
+                            <div class="hover:bg-gray-200 hover:underline hover:decoration-sky-600 p-0.5 pl-1 rounded-lg"><a href="?id=<?= $userLists['list_id'] ?>"><?= $userLists['list_desc'] ?></a></div>
                         <?php endif; ?>
                         <?php $listName = $userLists['list_desc']; ?>
                     <?php endforeach; ?>
                 </div>
-                <div class="hover:bg-gray-200 hover:underline hover:decoration-fuchsia-600 p-0.5 pl-1 rounded-lg mb-2"><a href="/lists.php">All tasks</a></div>
-                <a href="/create.php" class="bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add list!</a>
+                <div class="hover:bg-gray-200 hover:underline hover:decoration-yellow-600 p-0.5 pl-1 rounded-lg mb-6"><a href="/lists.php">All tasks</a></div>
+                <a href="/create.php" class="block text-center bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add list</a>
+                <a href="/edit.php" class="block text-center bg-yellow-500 hover:bg-yellow-700 text-white text-xs font-bold mt-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Edit list(s)</a>
             </div>
         </div>
         <div class="w-full grid">
@@ -60,7 +61,7 @@ require __DIR__ . '/views/header.php';
                 <div class="px-2">
                     <?php if (!isset($_GET['id'])) : ?>
                         <h2 class="text-lg sm:text-2xl font-bold">Here are all your tasks!</h2>
-                        <p class="text-xs sm:text-xl">Choose a list to sort tasks by list.</p>
+                        <p class="text-xs sm:text-xl">Choose a list to sort them.</p>
                     <?php else : ?>
                         <?php foreach (getListNameFromId($database, $_GET['id']) as $listName) : ?>
                             <h2 class="text-lg sm:text-2xl font-bold"><?= $listName['list_desc'] ?></h2>
@@ -76,14 +77,14 @@ require __DIR__ . '/views/header.php';
                             <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                 <div class="pl-4">
                                     <h2 class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-lg' : 'text-gray-700 leading-none text-lg font-bold' ?>"><?= $allTasks['task_title'] ?></h2>
-                                    <div class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-xs' : 'text-xs leading-none' ?>">
+                                    <div class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-xs' : 'text-xs leading-none text-gray-500' ?>">
                                         <?php if ($allTasks['task_description'] !== null) : ?>
-                                            <p class="text-[0.8rem] sm:text-sm text-gray-500"><?= $allTasks['task_description'] . "<br>"; ?></p>
+                                            <p class="text-[0.8rem] sm:text-sm "><?= $allTasks['task_description'] . "<br>"; ?></p>
                                         <?php endif; ?>
                                         <?php if ($allTasks['task_deadline'] !== null && $allTasks['task_deadline'] < date('Y-m-d H:i')) : ?>
                                             <p class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-rose-500 text-[0.7rem] sm:text-xs" ?>"><?= $allTasks['task_deadline'] ?></p>
                                         <?php elseif ($allTasks['task_deadline'] !== null) : ?>
-                                            <p class="text-[0.7rem] sm:text-xs text-gray-400"><?= $allTasks['task_deadline'] ?></p>
+                                            <p class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-gray-400 text-[0.7rem] sm:text-xs" ?>"><?= $allTasks['task_deadline'] ?></p>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -150,7 +151,7 @@ require __DIR__ . '/views/header.php';
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
-                    <a href="/create.php" class="bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add task!</a>
+                    <a href="/create.php" class="bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-6 py-2 px-4 ml-4 rounded focus:outline-none focus:shadow-outline">Add task!</a>
                 </div>
             </div>
         </div>
