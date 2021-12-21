@@ -33,7 +33,6 @@ require __DIR__ . '/views/header.php';
 
     <!-- IF THE USER IS LOGGED IN, THE LIST VIEW WILL BE SHOWN -->
 <?php elseif (isLoggedIn()) : ?>
-
     <!-- MY TASKLISTS -->
     <div style="display: grid; grid-template: minmax(20vw, 100%) 1fr/ auto 1fr" class="">
         <div class="bg-gray-50 h-screen col-span-1">
@@ -73,7 +72,6 @@ require __DIR__ . '/views/header.php';
                 <div class="mt-2 px-2 grid justify-items-start">
                     <!-- TO-DO ITEM(S) -->
                     <?php if (!isset($_GET['id'])) : ?>
-
                         <?php foreach (getAllListsAndTasks($database, $_SESSION['user']['id']) as $allTasks) : ?>
                             <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                 <div class="pl-4">
