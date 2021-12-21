@@ -95,15 +95,22 @@ require __DIR__ . '/views/header.php';
                                     </div>
                                 </div>
                                 <div class="flex pl-4">
-                                    <form action="app/tasks/complete.php" method="POST">
-                                        <button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
-                                        <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
-                                    </form>
-                                    <form action="app/tasks/delete.php" method="post">
+                                    <?php if ($tasks['task_completed'] === 'false') : ?>
+                                        <form action="app/tasks/complete.php" method="POST">
+                                            <input type="hidden" id="task_id_done" name="task_id_done" value="<?= $tasks['task_id'] ?>"><button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
+                                        </form>
+                                    <?php else : ?>
+                                        <form action="app/tasks/complete.php" method="POST">
+                                            <input type="hidden" id="task_id_undone" name="task_id_undone" value="<?= $tasks['task_id'] ?>">
+                                            <button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Undone</button>
+                                        </form>
+                                    <?php endif; ?>
+
+                                    <form action="app/tasks/delete.php" method="POST">
                                         <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
                                         <button type="submit" class="task-btn hidden w-14 bg-rose-500 hover:bg-rose-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Delete</button>
                                     </form>
-                                    <form action="/edit.php" method="post">
+                                    <form action="/edit.php" method="POST">
                                         <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
                                         <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-yellow-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
                                     </form>
