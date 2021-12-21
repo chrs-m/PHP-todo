@@ -30,8 +30,9 @@ getAllListsAndTasks($database, $_SESSION['user']['id']);
             <div class="edit-list">
 
                 <label for="list-description" class="block text-gray-700 text-sm font-bold mb-2">Please enter the new list name</label>
-                <input class="description-field focus:invalid:border-pink-500 block shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-sm" type="text" name="new-list-description" required placeholder="New list name"></input>
-                <button class="submit bg-blue-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 mt-3 mb-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="button">Update list</button>
+                <input class="description-field focus:invalid:border-pink-500 block shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-sm" type="text" name="new-list-description" placeholder="New list name"></input>
+                <button class="submit bg-blue-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 mt-3 mb-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="update-list-button" value="update-list">Update list</button>
+                <button class="submit bg-rose-500 hover:bg-rose-700 text-white text-xs font-bold py-2 px-4 mt-3 mb-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="delete-list-button" value="delete-list">Delete list</button>
             </div>
     </form>
     </div>
@@ -76,7 +77,8 @@ getAllListsAndTasks($database, $_SESSION['user']['id']);
                 <input class="task-deadline shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs" type="datetime-local" name="new-task-deadline"></input>
                 <small class="block text-xs italic mb-3">Update your deadline (optional).</small>
 
-                <button class="submit bg-blue-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 mt-3 mb-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="button">Update task</button>
+                <button class="submit bg-blue-500 hover:bg-green-700 text-white text-xs font-bold py-2 px-4 mt-3 mb-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="update-task-button" value="update-task">Update task</button>
+                <button class="hidden submit bg-rose-500 hover:bg-rose-700 text-white text-xs font-bold py-2 px-4 mt-3 mb-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="delete-task-button" value="delete-task">Delete task</button>
             </div>
     </form>
     </div>
