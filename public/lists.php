@@ -72,45 +72,91 @@ require __DIR__ . '/views/header.php';
                 <!-- TO-DO LIST -->
                 <div class="mt-2 px-2 grid justify-items-start">
                     <!-- TO-DO ITEM(S) -->
+                    <!-- IF NO LIST ARE CHOOSEN, SHOW ALL MY TASKS SPLIT INTO 'TODAY' AND 'ALL TASKS' -->
                     <?php if (!isset($_GET['id'])) : ?>
-                        <?php foreach (getAllListsAndTasks($database, $_SESSION['user']['id']) as $allTasks) : ?>
-                            <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
-                                <div class="pl-4">
-                                    <h2 class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-lg' : 'text-gray-700 leading-none text-lg font-bold' ?>"><?= $allTasks['task_title'] ?></h2>
-                                    <div class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-xs' : 'text-xs leading-none text-gray-500' ?>">
-                                        <?php if ($allTasks['task_description'] !== null) : ?>
-                                            <p class="text-[0.8rem] sm:text-sm "><?= $allTasks['task_description'] . "<br>"; ?></p>
+                        <button onclick="showTodaysTasks()">Show todays tasks</button>
+                        <div class="hidden" id="todaysTasks">
+                            <?php foreach (allTodaysTasks($database, $_SESSION['user']['id']) as $todaysTasks) : ?>
+                                <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
+                                    <div class="pl-4">
+                                        <h2 class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-lg' : 'text-gray-700 leading-none text-lg font-bold' ?>"><?= $todaysTasks['task_title'] ?></h2>
+                                        <div class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-xs' : 'text-xs leading-none text-gray-500' ?>">
+                                            <?php if ($todaysTasks['task_description'] !== null) : ?>
+                                                <p class="text-[0.8rem] sm:text-sm "><?= $todaysTasks['task_description'] . "<br>"; ?></p>
+                                            <?php endif; ?>
+                                            <?php if ($todaysTasks['task_deadline'] !== null && $todaysTasks['task_deadline'] < date('Y-m-d H:i')) : ?>
+                                                <p class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-rose-500 text-[0.7rem] sm:text-xs" ?>"><?= $todaysTasks['task_deadline'] ?></p>
+                                            <?php elseif ($todaysTasks['task_deadline'] !== null) : ?>
+                                                <p class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-gray-400 text-[0.7rem] sm:text-xs" ?>"><?= $todaysTasks['task_deadline'] ?></p>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="flex pl-4">
+                                        <?php if ($todaysTasks['task_completed'] === 'false') : ?>
+                                            <form action="app/tasks/complete.php" method="POST">
+                                                <input type="hidden" id="task_id_done" name="task_id_done" value="<?= $todaysTasks['task_id'] ?>"><button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
+                                            </form>
+                                        <?php else : ?>
+                                            <form action="app/tasks/complete.php" method="POST">
+                                                <input type="hidden" id="task_id_undone" name="task_id_undone" value="<?= $todaysTasks['task_id'] ?>">
+                                                <button class="task-btn hidden w-14 bg-blue-500 hover:bg-blue-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Undone</button>
+                                            </form>
                                         <?php endif; ?>
-                                        <?php if ($allTasks['task_deadline'] !== null && $allTasks['task_deadline'] < date('Y-m-d H:i')) : ?>
-                                            <p class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-rose-500 text-[0.7rem] sm:text-xs" ?>"><?= $allTasks['task_deadline'] ?></p>
-                                        <?php elseif ($allTasks['task_deadline'] !== null) : ?>
-                                            <p class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-gray-400 text-[0.7rem] sm:text-xs" ?>"><?= $allTasks['task_deadline'] ?></p>
-                                        <?php endif; ?>
+
+                                        <form action="app/tasks/delete.php" method="POST">
+                                            <input type="hidden" id="task_id" name="task_id" value="<?= $todaysTasks['task_id'] ?>">
+                                            <button type="submit" class="task-btn hidden w-14 bg-rose-500 hover:bg-rose-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                        </form>
+                                        <form action="/edit.php" method="POST">
+                                            <input type="hidden" id="task_id" name="task_id" value="<?= $todaysTasks['task_id'] ?>">
+                                            <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-yellow-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="flex pl-4">
-                                    <?php if ($allTasks['task_completed'] === 'false') : ?>
-                                        <form action="app/tasks/complete.php" method="POST">
-                                            <input type="hidden" id="task_id_done" name="task_id_done" value="<?= $allTasks['task_id'] ?>"><button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
-                                        </form>
-                                    <?php else : ?>
-                                        <form action="app/tasks/complete.php" method="POST">
-                                            <input type="hidden" id="task_id_undone" name="task_id_undone" value="<?= $allTasks['task_id'] ?>">
-                                            <button class="task-btn hidden w-14 bg-blue-500 hover:bg-blue-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Undone</button>
-                                        </form>
-                                    <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
 
-                                    <form action="app/tasks/delete.php" method="POST">
-                                        <input type="hidden" id="task_id" name="task_id" value="<?= $allTasks['task_id'] ?>">
-                                        <button type="submit" class="task-btn hidden w-14 bg-rose-500 hover:bg-rose-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Delete</button>
-                                    </form>
-                                    <form action="/edit.php" method="POST">
-                                        <input type="hidden" id="task_id" name="task_id" value="<?= $allTasks['task_id'] ?>">
-                                        <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-yellow-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
-                                    </form>
+                        <button onclick="showAllMyTasks()">Show all my tasks</button>
+                        <div class="hidden" id="allTasks">
+                            <?php foreach (allTasksByComplete($database, $_SESSION['user']['id']) as $allTasks) : ?>
+                                <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
+                                    <div class="pl-4">
+                                        <h2 class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-lg' : 'text-gray-700 leading-none text-lg font-bold' ?>"><?= $allTasks['task_title'] ?></h2>
+                                        <div class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-xs' : 'text-xs leading-none text-gray-500' ?>">
+                                            <?php if ($allTasks['task_description'] !== null) : ?>
+                                                <p class="text-[0.8rem] sm:text-sm "><?= $allTasks['task_description'] . "<br>"; ?></p>
+                                            <?php endif; ?>
+                                            <?php if ($allTasks['task_deadline'] !== null && $allTasks['task_deadline'] < date('Y-m-d H:i')) : ?>
+                                                <p class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-rose-500 text-[0.7rem] sm:text-xs" ?>"><?= $allTasks['task_deadline'] ?></p>
+                                            <?php elseif ($allTasks['task_deadline'] !== null) : ?>
+                                                <p class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-[0.7rem] sm:text-xs' : "text-gray-400 text-[0.7rem] sm:text-xs" ?>"><?= $allTasks['task_deadline'] ?></p>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="flex pl-4">
+                                        <?php if ($allTasks['task_completed'] === 'false') : ?>
+                                            <form action="app/tasks/complete.php" method="POST">
+                                                <input type="hidden" id="task_id_done" name="task_id_done" value="<?= $allTasks['task_id'] ?>"><button class="task-btn hidden w-14 bg-blue-500 hover:bg-green-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Done</button>
+                                            </form>
+                                        <?php else : ?>
+                                            <form action="app/tasks/complete.php" method="POST">
+                                                <input type="hidden" id="task_id_undone" name="task_id_undone" value="<?= $allTasks['task_id'] ?>">
+                                                <button class="task-btn hidden w-14 bg-blue-500 hover:bg-blue-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline" type="submit">Undone</button>
+                                            </form>
+                                        <?php endif; ?>
+
+                                        <form action="app/tasks/delete.php" method="POST">
+                                            <input type="hidden" id="task_id" name="task_id" value="<?= $allTasks['task_id'] ?>">
+                                            <button type="submit" class="task-btn hidden w-14 bg-rose-500 hover:bg-rose-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                        </form>
+                                        <form action="/edit.php" method="POST">
+                                            <input type="hidden" id="task_id" name="task_id" value="<?= $allTasks['task_id'] ?>">
+                                            <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-yellow-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                     <?php else : ?>
                         <?php foreach (getAllTasksFromList($database, $_GET['id']) as $tasks) : ?>
                             <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
