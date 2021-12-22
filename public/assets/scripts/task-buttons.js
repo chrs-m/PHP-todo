@@ -17,20 +17,26 @@ const taskButtons = document.querySelectorAll('.task-btn');
     });
 });
 
-// CLICK TO SHOW TODAYS TASKS AND ALL TASKS
-function showTodaysTasks() {
-    const taskContainer = document.getElementById('todaysTasks');
-    if (taskContainer.style.display === 'block') {
-        taskContainer.style.display = 'none';
+// CLICK TO SHOW TODAYS TASKS AND TO SHOW ALL TASKS
+const todaysTasks = document.querySelector('.show-todays-tasks');
+const todaysTasksContainer = document.querySelector('.todays-tasks-container');
+const allTasks = document.querySelector('.show-all-tasks');
+const allTasksContainer = document.querySelector('.all-tasks-container');
+
+// TODAYS TASKS
+todaysTasks.addEventListener('click', () => {
+    if (todaysTasksContainer.style.display === 'block') {
+        todaysTasksContainer.style.display = 'none';
     } else {
-        taskContainer.style.display = 'block';
+        todaysTasksContainer.style.display = 'block';
     }
-}
-function showAllMyTasks() {
-    const taskContainer = document.getElementById('allTasks');
-    if (taskContainer.style.display === 'block') {
-        taskContainer.style.display = 'none';
+});
+
+// ALL TASKS
+allTasks.addEventListener('click', () => {
+    if (allTasksContainer.style.display === 'block') {
+        allTasksContainer.style.display = 'none';
     } else {
-        taskContainer.style.display = 'block';
+        allTasksContainer.style.display = 'block';
     }
-}
+});

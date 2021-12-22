@@ -74,8 +74,8 @@ require __DIR__ . '/views/header.php';
                     <!-- TO-DO ITEM(S) -->
                     <!-- IF NO LIST ARE CHOOSEN, SHOW ALL MY TASKS SPLIT INTO 'TODAY' AND 'ALL TASKS' -->
                     <?php if (!isset($_GET['id'])) : ?>
-                        <button onclick="showTodaysTasks()">Show todays tasks</button>
-                        <div class="hidden" id="todaysTasks">
+                        <button class="show-todays-tasks">Show todays tasks</button>
+                        <div class="hidden todays-tasks-container">
                             <?php foreach (allTodaysTasks($database, $_SESSION['user']['id']) as $todaysTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                     <div class="pl-4">
@@ -116,8 +116,8 @@ require __DIR__ . '/views/header.php';
                             <?php endforeach; ?>
                         </div>
 
-                        <button onclick="showAllMyTasks()">Show all my tasks</button>
-                        <div class="hidden" id="allTasks">
+                        <button class="show-all-tasks">Show all my tasks</button>
+                        <div class="hidden all-tasks-container">
                             <?php foreach (allTasksByComplete($database, $_SESSION['user']['id']) as $allTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                     <div class="pl-4">
