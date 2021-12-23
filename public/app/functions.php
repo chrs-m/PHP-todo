@@ -78,7 +78,9 @@ function getAllTasksFromList(PDO $database, string $id): array
     tasks.completed AS task_completed
     FROM tasks
     WHERE task_list_id = :list_id
-    ORDER BY task_completed ASC');
+    ORDER BY
+    task_completed ASC,
+    task_deadline ASC;');
     $statement->bindParam(':list_id', $id, PDO::PARAM_INT);
     $statement->execute();
     $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -132,7 +134,9 @@ function allTasksByComplete(PDO $database, int $userId): array
     INNER JOIN users ON lists.user_id = users.id
     LEFT JOIN tasks ON lists.id = tasks.list_id
     WHERE lists.user_id = :id
-    ORDER BY task_completed ASC;');
+    ORDER BY
+    task_completed ASC,
+    task_deadline ASC;');
     $statement->bindParam(':id', $userId, PDO::PARAM_INT);
     $statement->execute();
     $tasksByComplete = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -172,7 +176,8 @@ function allTodaysTasks(PDO $database, int $userId): array
     AND task_deadline BETWEEN :todayStart
 	AND :todayEnd
     ORDER BY
-	task_completed ASC;');
+    task_completed ASC,
+    task_deadline ASC;');
     $statement->bindParam(':id', $userId, PDO::PARAM_INT);
     $statement->bindParam(':todayStart', $todayStart, PDO::PARAM_STR);
     $statement->bindParam(':todayEnd', $todayEnd, PDO::PARAM_STR);

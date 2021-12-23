@@ -27,7 +27,11 @@ const allTasksContainer = document.querySelector('.all-tasks-container');
 todaysTasks.addEventListener('click', () => {
     if (todaysTasksContainer.style.display === 'block') {
         todaysTasksContainer.style.display = 'none';
+        todaysTasks.innerHTML =
+            'Show todays tasks <i class="fas fa-angle-down"></i>';
     } else {
+        todaysTasks.innerHTML =
+            'Hide todays tasks <i class="fas fa-angle-up"></i>';
         todaysTasksContainer.style.display = 'block';
     }
 });
@@ -36,7 +40,11 @@ todaysTasks.addEventListener('click', () => {
 allTasks.addEventListener('click', () => {
     if (allTasksContainer.style.display === 'block') {
         allTasksContainer.style.display = 'none';
+        allTasks.innerHTML =
+            'Show all my tasks <i class="fas fa-angle-down"></i>';
     } else {
         allTasksContainer.style.display = 'block';
+        allTasks.innerHTML =
+            'Hide all my tasks <i class="fas fa-angle-up"></i>';
     }
 });

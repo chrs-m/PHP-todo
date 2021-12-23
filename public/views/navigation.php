@@ -20,7 +20,7 @@
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-center">
-                    <a class="navbar-brand text-gray-100 text-xl ml-10 sm:ml-0" href="index.php"><?php echo $config['title']; ?></a>
+                    <a class="navbar-brand text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-xl font-bold ml-10 sm:ml-0" href="index.php"><?php echo $config['title']; ?></a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">

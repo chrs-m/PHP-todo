@@ -74,8 +74,13 @@ require __DIR__ . '/views/header.php';
                     <!-- TO-DO ITEM(S) -->
                     <!-- IF NO LIST ARE CHOOSEN, SHOW ALL MY TASKS SPLIT INTO 'TODAY' AND 'ALL TASKS' -->
                     <?php if (!isset($_GET['id'])) : ?>
-                        <button class="show-todays-tasks">Show todays tasks</button>
-                        <div class="hidden todays-tasks-container">
+                        <!-- TAP TO SHOW ALL TODAYS TASKS -->
+                        <button class="show-todays-tasks py-2 px-2 font-bold underline decoration-emerald-500">Show todays tasks <i class="fas fa-angle-down"></i></button>
+                        <div class="hidden todays-tasks-container py-2 px-2">
+                            <?php if (empty(allTodaysTasks($database, $_SESSION['user']['id']))) : ?>
+                                <p class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-700 leading-none text-lg font-bold mb-6 py-2 px-2">No tasks for today!</p>
+
+                            <?php endif; ?>
                             <?php foreach (allTodaysTasks($database, $_SESSION['user']['id']) as $todaysTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                     <div class="pl-4">
@@ -116,7 +121,8 @@ require __DIR__ . '/views/header.php';
                             <?php endforeach; ?>
                         </div>
 
-                        <button class="show-all-tasks">Show all my tasks</button>
+                        <!-- TAP TO SHOW ALL USERS TASKS! -->
+                        <button class="show-all-tasks py-2 px-2 font-bold underline decoration-emerald-500">Show all my tasks <i class="fas fa-angle-down"></i></button>
                         <div class="hidden all-tasks-container">
                             <?php foreach (allTasksByComplete($database, $_SESSION['user']['id']) as $allTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
