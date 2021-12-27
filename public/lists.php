@@ -50,8 +50,8 @@ require __DIR__ . '/views/header.php';
                     <?php endforeach; ?>
                 </div>
                 <div class="hover:bg-gray-200 hover:underline hover:decoration-yellow-600 p-0.5 pl-1 rounded-lg mb-6"><a href="/lists.php">All tasks</a></div>
-                <a href="/create.php" class="block text-center bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add list</a>
-                <a href="/edit.php" class="block text-center bg-yellow-500 hover:bg-yellow-700 text-white text-xs font-bold mt-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Edit list(s)</a>
+                <a href="/create.php" class="block text-center bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add list</a>
+                <a href="/edit.php" class="block text-center bg-yellow-500 hover:bg-amber-500 text-white text-xs font-bold mt-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Edit list(s)</a>
             </div>
         </div>
         <div class="w-full grid">
@@ -157,7 +157,7 @@ require __DIR__ . '/views/header.php';
                                         </form>
                                         <form action="/edit.php" method="POST">
                                             <input type="hidden" id="task_id" name="task_id" value="<?= $allTasks['task_id'] ?>">
-                                            <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-yellow-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
+                                            <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-amber-500 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -197,13 +197,13 @@ require __DIR__ . '/views/header.php';
                                     </form>
                                     <form action="/edit.php" method="POST">
                                         <input type="hidden" id="task_id" name="task_id" value="<?= $tasks['task_id'] ?>">
-                                        <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-yellow-700 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
+                                        <button type="submit" class="task-btn hidden w-14 bg-yellow-500 hover:bg-amber-500 text-white text-[0.7rem] font-bold py-1 px-1 my-1 mr-1 rounded focus:outline-none focus:shadow-outline">Edit</button>
                                     </form>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
-                    <a href="/create.php" class="bg-blue-500 hover:bg-green-700 text-white text-xs font-bold mt-6 py-2 px-4 ml-4 rounded focus:outline-none focus:shadow-outline">Add task!</a>
+                    <a href="/create.php" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold mt-6 py-2 px-4 ml-4 rounded focus:outline-none focus:shadow-outline">Add task!</a>
                 </div>
             </div>
         </div>
