@@ -143,6 +143,68 @@ function allTasksByComplete(PDO $database, int $userId): array
     return $tasksByComplete;
 }
 
+// QUERY TO GET ALL TASKS FOR THE USER SORTED BY COMPLETE STATUS
+/**
+ * @param PDO $database
+ * @param int $userId
+ * @return array
+ * @throws PDOException
+ */
+function allUserTasksByComplete(PDO $database, int $userId): array
+{
+    $statement = $database->prepare('SELECT
+    tasks.title AS task_title,
+    tasks.description as task_description,
+    tasks.user_id AS task_user_id,
+    tasks.id AS task_id,
+    REPLACE (tasks.deadline, "T", " ") as task_deadline,
+    tasks.created AS task_created,
+    tasks.updated AS task_updated,
+    tasks.list_id AS task_list_id,
+    tasks.completed AS task_completed
+    FROM
+    tasks
+    WHERE user_id = :id
+    ORDER BY
+    task_completed ASC,
+    task_deadline ASC;');
+    $statement->bindParam(':id', $userId, PDO::PARAM_INT);
+    $statement->execute();
+    $allUserTasksByComplete = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $allUserTasksByComplete;
+}
+
+// QUERY TO GET ALL TASKS FOR THE USER SORTED BY TITLE
+/**
+ * @param PDO $database
+ * @param int $userId
+ * @return array
+ * @throws PDOException
+ */
+function allUserTasksByTitle(PDO $database, int $userId): array
+{
+    $statement = $database->prepare('SELECT
+    tasks.title AS task_title,
+    tasks.description as task_description,
+    tasks.user_id AS task_user_id,
+    tasks.id AS task_id,
+    REPLACE (tasks.deadline, "T", " ") as task_deadline,
+    tasks.created AS task_created,
+    tasks.updated AS task_updated,
+    tasks.list_id AS task_list_id,
+    tasks.completed AS task_completed
+    FROM
+    tasks
+    WHERE user_id = :id
+    ORDER BY
+    task_title ASC,
+    task_deadline ASC;');
+    $statement->bindParam(':id', $userId, PDO::PARAM_INT);
+    $statement->execute();
+    $allUserTasksByTitle = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $allUserTasksByTitle;
+}
+
 
 // QUERY TO GET ALL LISTS AND TASKS WHERE DEADLINE IS TODAY
 /**
@@ -157,8 +219,6 @@ function allTodaysTasks(PDO $database, int $userId): array
     $todayEnd = date("Y-m-d H:i:s", mktime(23, 59, 59));
 
     $statement = $database->prepare('SELECT
-    lists.id AS list_id,
-    lists.description AS list_desc,
     tasks.title AS task_title,
     tasks.description as task_description,
     tasks.user_id AS task_user_id,
@@ -169,10 +229,8 @@ function allTodaysTasks(PDO $database, int $userId): array
     tasks.list_id AS task_list_id,
     tasks.completed AS task_completed
     FROM
-    lists
-    INNER JOIN users ON lists.user_id = users.id
-    LEFT JOIN tasks ON lists.id = tasks.list_id
-    WHERE lists.user_id = :id
+    tasks
+    WHERE user_id = :id
     AND task_deadline BETWEEN :todayStart
 	AND :todayEnd
     ORDER BY

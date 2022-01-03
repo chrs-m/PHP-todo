@@ -39,6 +39,10 @@ The assigment was to create a full functioning to-do app where the user can:
 
 -   View all tasks which should be completed today.
 
+-   **Extra:** User is able to delete the account along with all tasks and lists.
+
+-   **Extra:** As a user I'm able to remove a task from a list.
+
 # Installation
 
 1. Clone repo via the terminal or GitHub desktop.

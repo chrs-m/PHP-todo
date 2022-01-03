@@ -43,7 +43,7 @@ $userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
 
                 <label for="task-title" class="block text-gray-700 text-sm font-bold mb-2">Choose a list for your task</label>
                 <!-- LOOPS OUT EVERY LIST CONNECTED TO THE USER -->
-                <select class="task-list focus:invalid:border-pink-500 shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 mb-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs" name="task-list" required>
+                <select class="task-list focus:invalid:border-pink-500 shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 mb-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs" name="task-list">
                     <option value="">--Please choose a list (dropdown menu)--</option>
                     <?php
                     foreach ($userLists as $userList) { ?>

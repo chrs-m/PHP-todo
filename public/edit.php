@@ -46,7 +46,7 @@ getAllListsAndTasks($database, $_SESSION['user']['id']);
                     <option value="">--Please choose task (dropdown menu)--</option>
                     <?php
                     $listName = '';
-                    foreach (getAllListsAndTasks($database, $_SESSION['user']['id']) as $userTask) :
+                    foreach (allUserTasksByTitle($database, $_SESSION['user']['id']) as $userTask) :
                         if ($userTask['list_desc'] !== $listName) : ?>
                             <option value="<?= $userTask['task_id'] ?>"><?= $userTask['task_title'] ?></option>
                         <?php endif; ?>
@@ -62,7 +62,7 @@ getAllListsAndTasks($database, $_SESSION['user']['id']);
                 <small class="block text-xs text-gray-500 italic px-1 py-1 mb-3">New details? (optional)</small>
                 <label for="task-title" class="block text-gray-700 text-sm font-bold mb-2">Choose a new list for your task</label>
                 <!-- LOOPS OUT EVERY LIST CONNECTED TO THE USER -->
-                <select class="task-list focus:invalid:border-pink-500 shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs" name="new-task-list" required>
+                <select class="task-list focus:invalid:border-pink-500 shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs" name="new-task-list">
                     <option value="">--Please choose a list (dropdown menu)--</option>
                     <?php
                     $listName = '';

@@ -26,7 +26,7 @@ if (isset($_POST['task_id_done'])) {
 } else if (isset($_POST['task_id_undone'])) {
     $id = $_POST['task_id_undone'];
     $completed = 'false';
-    $date = date('Y-m-d H:i');
+    $date = date('Y-m-d H:i:s');
 
     $statement = $database->prepare(
         'UPDATE tasks SET completed = :completed, updated = :updated WHERE id = :id'

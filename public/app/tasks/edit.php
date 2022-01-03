@@ -12,7 +12,7 @@ if (isset($_POST['update-task-button'])) {
     $desc = $_POST['new-task-description'];
     $taskList = $_POST['new-task-list'];
     $deadline = $_POST['new-task-deadline'];
-    $date = date('Y-m-d H:i');
+    $date = date('Y-m-d H:i:s');
 
 
     $statement = $database->prepare(
