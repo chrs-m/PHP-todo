@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../../autoload.php';
 
 
-// IF YOU FILLED OUT THE PASSWORD FORM, WE UPDATE THE PASSWORD
+// HERE WE UPDATE THE PASSWORD IN THE DATABASE
 
 if ((isset($_POST['new-password']) && $_POST['new-password'] === $_POST['confirm-new-password'])) {
     $newPassword = password_hash($_POST['new-password'], PASSWORD_DEFAULT);

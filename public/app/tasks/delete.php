@@ -6,7 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 $id = $_POST['task_id'];
 
-
+// DELETE TASK FROM DB
 $statement = $database->prepare(
     'DELETE FROM tasks WHERE id = :id'
 );

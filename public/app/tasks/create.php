@@ -13,7 +13,7 @@ $statement->bindParam(':id', $userId, PDO::PARAM_INT);
 $statement->execute();
 $userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-// In this file we create new tasks and assign them to lists.
+// HERE WE CREATE NEW TASKS AND ASSIGN THEM TO LISTS
 if (isset($_POST['task-title'])) {
     $userId = $_SESSION['user']['id'];
     $listId = trim(filter_var($_POST['task-list'], FILTER_SANITIZE_SPECIAL_CHARS));

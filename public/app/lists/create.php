@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-// In this file we create new lists.
+// HERE WE CREATE NEW LISTS
 if (isset($_POST['list-description'])) {
     $listDescription = trim(filter_var($_POST['list-description'], FILTER_SANITIZE_SPECIAL_CHARS));
     $userId = $_SESSION['user']['id'];

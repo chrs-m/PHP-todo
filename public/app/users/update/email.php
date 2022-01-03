@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../autoload.php';
 
-// IF YOU FILLED OUT THE EMAIL FORM, WE UPDATE THE EMAIL
+// HERE WE UPDATE THE EMAIL IN THE DATABASE
 
 if (isset($_SESSION['user']) && isset($_POST['new-email'])) {
     $registeredEmail = trim(filter_var($_POST['new-email'], FILTER_SANITIZE_EMAIL));

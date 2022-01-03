@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 
-// IF A TASK IS UNDONE, SET IT TO COMPLETED
+// WHEN BUTTON IS PRESSED - IF A TASK IS UNDONE, SET IT TO COMPLETED
 if (isset($_POST['task_id_done'])) {
     $id = $_POST['task_id_done'];
     $completed = 'true';
@@ -22,7 +22,7 @@ if (isset($_POST['task_id_done'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     redirect($_SERVER['HTTP_REFERER']);
 
-    // IF A TASK IS COMPLETED, SET IT TO UNDONE
+    // WHEN BUTTON IS PRESSED - IF A TASK IS COMPLETED, SET IT TO UNDONE
 } else if (isset($_POST['task_id_undone'])) {
     $id = $_POST['task_id_undone'];
     $completed = 'false';

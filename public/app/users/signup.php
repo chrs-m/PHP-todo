@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 
-// In this file we register new users.
+// HERE WE REGISTER NEW USERS
 if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm-password'])) {
     if ($_POST['confirm-password'] !== $_POST['password']) {
         $_SESSION['message'] = "Sorry, your passwords do not match. Please try again.";
@@ -44,7 +44,6 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
                     $errors[] = 'The uploaded file ' . $avatar['name'] . ' exceeded the filesize limit.';
                 }
 
-
                 // CHECKS IF THEIR ARE ANY ERRORS, IF SO, THEN EXIT
                 if (count($errors) > 0) {
                     $_SESSION['errors'] = $errors;
@@ -60,10 +59,8 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
                 // PUTS THE IMAGE TO THE UPLOADS FOLDER
                 $destinationAndName = __DIR__ . '/../database/avatars/' . $imgName;
 
-
                 move_uploaded_file($avatar['tmp_name'], $destinationAndName);
             }
-
 
             $statement = $database->prepare('INSERT INTO users(name, email, username, password, avatar) VALUES(:name, :email, :username, :password, :avatar)');
 

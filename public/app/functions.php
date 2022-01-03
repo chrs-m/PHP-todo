@@ -15,7 +15,7 @@ function redirect(string $path)
 }
 
 
-// Checks if user is logged in
+// CHECKES IF USER IS LOGGED IN OR NOT
 /** @return bool  */
 function isLoggedIn(): bool
 {

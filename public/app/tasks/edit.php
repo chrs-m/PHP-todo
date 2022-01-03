@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 
-// CHECKS IF A NEW NAME WAS GIVEN, IF NOT, THE LIST WILL BE GIVEN A RANDOM NUMBER
+// IF UPDATE BUTTON WAS PRESSED, UPDATE TASK DATA IN DB
 if (isset($_POST['update-task-button'])) {
     $id = $_POST['dropdown-task-id'];
     $title = $_POST['new-task-title'];
@@ -30,7 +30,7 @@ if (isset($_POST['update-task-button'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     redirect($_SERVER['HTTP_REFERER']);
 
-    // IF A NEW NAME AS GIVEN, THE LIST GETS THE NEW NAME
+    // IF THE DELETE BUTTON WAS PRESSED, DELETE TASK FROM DB
 } else if (isset($_POST['delete-task-button'])) {
     $id = $_POST['dropdown-task-id'];
 
