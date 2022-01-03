@@ -34,6 +34,7 @@ require __DIR__ . '/views/header.php';
         <p class="text-md mb-4">What do you need to accomplish today?</p>
         <a href="/lists.php" class="bg-gradient-to-r from-sky-400 to-purple-600 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Go to your lists and tasks!</a>
         <i class="far fa-check-circle animate-wiggle text-[120px] mt-24 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"></i>
+        <p class="quote-container text-xs sm:text-lg absolute bottom-1 py-4 px-6"></p>
     <?php endif; ?>
 </article>
 
