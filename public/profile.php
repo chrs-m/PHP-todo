@@ -67,10 +67,18 @@ require __DIR__ . '/views/header.php';
                 <small class="form-text block text-xs italic px-1 py-1">Please provide your new password again.</small>
             </div>
 
-
-
             <button type="submit" class="block mt-2 text-xs mr-4 py-2 px-4 rounded-full border-0 font-semibold bg-blue-600 text-white hover:bg-green-700">Update password</button>
         </form>
+
+        <form class="py-6" action="app/users/update/delete.php" method="post" enctype="multipart/form-data">
+            <div class="border-t-2 border-rose-600 pt-3">
+                <label for="delete-account" class="block text-rose-700 text-sm lg:text-2xl font-bold">Remove account</label>
+                <small class="italic text-rose-700">This action cannot be undone!</small>
+                <input class="form-control block shadow appearance-none border rounded w-full sm:w-1/3 mt-2 py-2 px-3 text-rose-800 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm" type="email" name="delete-account" id="delete-account" placeholder="Enter your email to remove account">
+            </div>
+            <button type="submit" class="block mt-4 text-xs py-2 px-4 rounded-full border-0 font-semibold bg-rose-600 text-white hover:bg-rose-700">Remove account</button>
+        </form>
+
     </article>
 <?php endif; ?>
 
