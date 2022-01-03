@@ -28,7 +28,10 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
             $_SESSION['message'] = "You already have an account! Try sign in instead.";
             redirect('/login.php');
         } else {
-            if (isset($_FILES['avatar'])) {
+            // IF USER DOES NOT CHOOSE AVATAR, THE DEFAULT WILL BE SHOWN WHEN LOGGED IN
+            if (empty($_FILES['avatar']['name'])) {
+                $imgName = NULL;
+            } elseif (!empty($_FILES['avatar'])) {
                 // VARIABLES TO GIVES UPLOADED IMAGES RANDOM NAME OF NUMBERS AND THE CORRECT FILE EXTENSION
                 $fileExt = pathinfo($_FILES['avatar']['type'])['filename'];
                 $imgName = date('Ymd') . "_" . random_int(1, 999999) . '_' . random_int(1, 999999) . "." . $fileExt;
