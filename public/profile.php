@@ -50,7 +50,7 @@ require __DIR__ . '/views/header.php';
             <div class="mb-3">
                 <label for="new-email" class="block text-gray-700 text-sm lg:text-2xl font-bold mb-2">Enter your new email below</label>
                 <input class="form-control block shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm" type="email" name="new-email" id="new-email" placeholder="email@email.com">
-                <small class="form-text text-xs">Please provide your new email address.</small>
+                <small class="form-text text-xs italic px-1 py-1">Please provide your new email address.</small>
             </div>
             <button type="submit" class="block mt-2 text-xs mr-4 py-2 px-4 rounded-full border-0 font-semibold bg-blue-600 text-white hover:bg-green-700">Update e-mail</button>
         </form>
@@ -58,13 +58,13 @@ require __DIR__ . '/views/header.php';
             <div class="mb-3">
                 <label for="new-password" class="block text-gray-700 text-sm lg:text-2xl font-bold mb-2">Choose your new password</label>
                 <input class="form-control shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm" type="password" name="new-password" id="new-password" placeholder="Password">
-                <small class="form-text block text-xs">Please provide your new password (passphrase).</small>
+                <small class="form-text block text-xs italic px-1 py-1">Please provide your new password (passphrase).</small>
             </div>
 
             <div class="mb-3">
                 <label for="confirm-new-password" class="block text-gray-700 text-sm lg:text-2xl font-bold mb-2">Confirm your new password</label>
                 <input class="form-control shadow appearance-none border rounded w-full sm:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm" type="password" name="confirm-new-password" id="confirm-new-password" placeholder="Confirm your passowrd">
-                <small class="form-text block text-xs">Please provide your new password again.</small>
+                <small class="form-text block text-xs italic px-1 py-1">Please provide your new password again.</small>
             </div>
 
 

@@ -1,0 +1,18 @@
+/* FONTS */
+@font-face {
+    font-family: 'ProductSans';
+    src: local('ProductSans'),
+        url(../fonts/ProductSans-Regular.woff2) format('woff2');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'ProductSans';
+    src: local('ProductSans'),
+        url(../fonts/ProductSans-Bold.woff2) format('woff2');
+    font-weight: bold;
+}
+
+body {
+    font-family: 'ProductSans';
+}
