@@ -77,11 +77,11 @@ require __DIR__ . '/views/header.php';
                         <!-- TAP TO SHOW ALL TODAYS TASKS -->
                         <button class="show-todays-tasks py-2 px-2 font-bold underline decoration-emerald-500">Show todays tasks <i class="fas fa-angle-down"></i></button>
                         <div class="hidden todays-tasks-container py-2 px-2">
-                            <?php if (empty(allTodaysTasks($database, $_SESSION['user']['id']))) : ?>
+                            <?php if (empty(getAllTodaysTasks($database, $_SESSION['user']['id']))) : ?>
                                 <p class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-700 leading-none text-lg font-bold mb-6 py-2 px-2">No tasks for today!</p>
 
                             <?php endif; ?>
-                            <?php foreach (allTodaysTasks($database, $_SESSION['user']['id']) as $todaysTasks) : ?>
+                            <?php foreach (getAllTodaysTasks($database, $_SESSION['user']['id']) as $todaysTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                     <div class="pl-4">
                                         <h2 class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-lg' : 'text-gray-700 leading-none text-lg font-bold' ?>"><?= $todaysTasks['task_title'] ?></h2>
@@ -124,7 +124,7 @@ require __DIR__ . '/views/header.php';
                         <!-- TAP TO SHOW ALL USERS TASKS! -->
                         <button class="show-all-tasks py-2 px-2 font-bold underline decoration-emerald-500">Show all my tasks <i class="fas fa-angle-down"></i></button>
                         <div class="hidden all-tasks-container">
-                            <?php foreach (allUserTasksByComplete($database, $_SESSION['user']['id']) as $allTasks) : ?>
+                            <?php foreach (getAllUserTasksByComplete($database, $_SESSION['user']['id']) as $allTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                     <div class="pl-4">
                                         <h2 class="<?= $allTasks['task_completed'] === 'true' ? 'text-green-600 line-through text-lg' : 'text-gray-700 leading-none text-lg font-bold' ?>"><?= $allTasks['task_title'] ?></h2>

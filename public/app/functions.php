@@ -54,8 +54,8 @@ function getAllListsAndTasks(PDO $database, int $userId): array
     ORDER BY list_desc ASC;');
     $statement->bindParam(':id', $userId, PDO::PARAM_INT);
     $statement->execute();
-    $userListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $userListsAndTasks;
+    $getAllUserListsAndTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $getAllUserListsAndTasks;
 }
 
 // QUERY TO GET ALL TASKS BELONGING TO LIST_ID ($_GET)
@@ -83,8 +83,8 @@ function getAllTasksFromList(PDO $database, string $id): array
     task_deadline ASC;');
     $statement->bindParam(':list_id', $id, PDO::PARAM_INT);
     $statement->execute();
-    $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $tasks;
+    $getAllTasksFromList = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $getAllTasksFromList;
 }
 
 //QUERY TO GET THE LIST NAME FOR THE SELECTED LIST
@@ -104,8 +104,8 @@ function getListNameFromId(PDO $database, string $id): array
     WHERE list_id = :list_id');
     $statement->bindParam(':list_id', $id, PDO::PARAM_INT);
     $statement->execute();
-    $listFromId = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $listFromId;
+    $getListFromId = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $getListFromId;
 }
 
 // QUERY TO GET ALL LISTS AND TASKS FOR THE USER SORTED BY COMPLETE STATUS
@@ -115,7 +115,7 @@ function getListNameFromId(PDO $database, string $id): array
  * @return array
  * @throws PDOException
  */
-function allTasksByComplete(PDO $database, int $userId): array
+function getAllTasksByComplete(PDO $database, int $userId): array
 {
     $statement = $database->prepare('SELECT
     lists.id AS list_id,
@@ -139,8 +139,8 @@ function allTasksByComplete(PDO $database, int $userId): array
     task_deadline ASC;');
     $statement->bindParam(':id', $userId, PDO::PARAM_INT);
     $statement->execute();
-    $tasksByComplete = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $tasksByComplete;
+    $getAllTasksByComplete = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $getAllTasksByComplete;
 }
 
 // QUERY TO GET ALL TASKS FOR THE USER SORTED BY COMPLETE STATUS
@@ -150,7 +150,7 @@ function allTasksByComplete(PDO $database, int $userId): array
  * @return array
  * @throws PDOException
  */
-function allUserTasksByComplete(PDO $database, int $userId): array
+function getAllUserTasksByComplete(PDO $database, int $userId): array
 {
     $statement = $database->prepare('SELECT
     tasks.title AS task_title,
@@ -170,8 +170,8 @@ function allUserTasksByComplete(PDO $database, int $userId): array
     task_deadline ASC;');
     $statement->bindParam(':id', $userId, PDO::PARAM_INT);
     $statement->execute();
-    $allUserTasksByComplete = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $allUserTasksByComplete;
+    $getAllUserTasksByComplete = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $getAllUserTasksByComplete;
 }
 
 // QUERY TO GET ALL TASKS FOR THE USER SORTED BY TITLE
@@ -181,7 +181,7 @@ function allUserTasksByComplete(PDO $database, int $userId): array
  * @return array
  * @throws PDOException
  */
-function allUserTasksByTitle(PDO $database, int $userId): array
+function getAllUserTasksByTitle(PDO $database, int $userId): array
 {
     $statement = $database->prepare('SELECT
     tasks.title AS task_title,
@@ -201,8 +201,8 @@ function allUserTasksByTitle(PDO $database, int $userId): array
     task_deadline ASC;');
     $statement->bindParam(':id', $userId, PDO::PARAM_INT);
     $statement->execute();
-    $allUserTasksByTitle = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $allUserTasksByTitle;
+    $getAllUserTasksByTitle = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $getAllUserTasksByTitle;
 }
 
 
@@ -213,7 +213,7 @@ function allUserTasksByTitle(PDO $database, int $userId): array
  * @return array
  * @throws PDOException
  */
-function allTodaysTasks(PDO $database, int $userId): array
+function getAllTodaysTasks(PDO $database, int $userId): array
 {
     $todayStart = date("Y-m-d H:i:s", mktime(00, 00, 01));
     $todayEnd = date("Y-m-d H:i:s", mktime(23, 59, 59));
@@ -240,6 +240,6 @@ function allTodaysTasks(PDO $database, int $userId): array
     $statement->bindParam(':todayStart', $todayStart, PDO::PARAM_STR);
     $statement->bindParam(':todayEnd', $todayEnd, PDO::PARAM_STR);
     $statement->execute();
-    $allTodaysTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $allTodaysTasks;
+    $getAllTodaysTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $getAllTodaysTasks;
 }
