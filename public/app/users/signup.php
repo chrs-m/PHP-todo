@@ -30,7 +30,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
         } else {
             // IF USER DOES NOT CHOOSE AVATAR, THE DEFAULT WILL BE SHOWN WHEN LOGGED IN
             if (empty($_FILES['avatar']['name'])) {
-                $imgName = NULL;
+                $imgName = null;
             } elseif (!empty($_FILES['avatar'])) {
                 // VARIABLES TO GIVES UPLOADED IMAGES RANDOM NAME OF NUMBERS AND THE CORRECT FILE EXTENSION
                 $fileExt = pathinfo($_FILES['avatar']['type'])['filename'];
