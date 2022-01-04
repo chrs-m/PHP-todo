@@ -1,7 +1,7 @@
 const quoteContainer = document.querySelector('.quote');
 const quoteAuthor = document.querySelector('.author');
 
-function generateQuotes() {
+const generateQuotes = () => {
     fetch('https://type.fit/api/quotes')
         .then(function (response) {
             return response.json();
@@ -13,6 +13,6 @@ function generateQuotes() {
                 quoteAuthor.innerText = '- ' + data[randomInt].author;
             }
         });
-}
+};
 
 quoteContainer.onload = generateQuotes();
