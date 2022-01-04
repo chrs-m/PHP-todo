@@ -1,8 +1,8 @@
 // SET THE WIDTH OF NAV WHEN OPENING AND CLOSING
-function openNav() {
+const openNav = () => {
     document.getElementById('listSideNav').style.width = '200px';
-}
+};
 
-function closeNav() {
+const closeNav = () => {
     document.getElementById('listSideNav').style.width = '0px';
-}
+};
