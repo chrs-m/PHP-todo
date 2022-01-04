@@ -9,6 +9,7 @@
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/assets/styles/tailwind/style.css">
     <link rel="stylesheet" href="/assets/styles/basic.css">
+    <link rel="stylesheet" href="/assets/styles/list-nav.css">
 </head>
 
 <body>

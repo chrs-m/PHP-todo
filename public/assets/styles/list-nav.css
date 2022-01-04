@@ -1,0 +1,14 @@
+/* NAV TRANSITION */
+.sidenav {
+    transition: 0.5s;
+}
+
+/* CLOSE BUTTON */
+.sidenav .closebtn {
+    position: absolute;
+    top: 48px;
+    right: 12px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: white;
+}

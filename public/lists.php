@@ -35,25 +35,28 @@ require __DIR__ . '/views/header.php';
 <?php elseif (isLoggedIn()) : ?>
     <!-- MY TASKLISTS -->
     <div style="display: grid; grid-template: minmax(20vw, 100%) 1fr/ auto 1fr" class="">
-        <div class="bg-gray-50 h-screen col-span-1">
-            <div class="p-2 pt-2">
+
+        <div class="p-2 pt-2">
+            <div id="listSideNav" class="sidenav h-full fixed w-0 top-0 left-0 bg-gray-900/95 overflow-x-hidden py-16 ">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <div class="pb-3">
-                    <div class="font-bold underline decoration-2 decoration-fuchsia-600 text-lg">My Tasklists</div>
+                    <div class="text-white font-bold underline decoration-2 decoration-fuchsia-500 text-lg px-2">My Tasklists</div>
                 </div>
-                <div class="pb-3">
+                <div class="pb-3 px-3">
                     <?php $listName = '';
                     foreach (getAllListsAndTasks($database, $_SESSION['user']['id']) as $userLists) :
                         if ($userLists['list_desc'] !== $listName) : ?>
-                            <div class="hover:bg-gray-200 hover:underline hover:decoration-sky-600 p-0.5 pl-1 rounded-lg"><a href="?id=<?= $userLists['list_id'] ?>"><?= $userLists['list_desc'] ?></a></div>
+                            <div class="p-1 pl-1 rounded-lg"><a class="text-white hover:underline hover:decoration-emerald-400" href="?id=<?= $userLists['list_id'] ?>"><?= $userLists['list_desc'] ?></a></div>
                         <?php endif; ?>
                         <?php $listName = $userLists['list_desc']; ?>
                     <?php endforeach; ?>
                 </div>
-                <div class="hover:bg-gray-200 hover:underline hover:decoration-yellow-600 p-0.5 pl-1 rounded-lg mb-6"><a href="/lists.php">All tasks</a></div>
-                <a href="/create.php" class="block text-center bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold mt-8 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add list</a>
-                <a href="/edit.php" class="block text-center bg-yellow-500 hover:bg-amber-500 text-white text-xs font-bold mt-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline">Edit list(s)</a>
+                <div class="hover:underline hover:decoration-yellow-400 px-3 rounded-lg mb-6"><a href="/lists.php" class="text-white font-bold">All tasks</a></div>
+                <a href="/create.php" class="block text-center bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold mt-8 ml-3 py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/2">Add list</a>
+                <a href="/edit.php" class="block text-center bg-yellow-500 hover:bg-amber-500 text-white text-xs font-bold mt-2 ml-3 py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/2">Edit list(s)</a>
             </div>
         </div>
+
         <div class="w-full grid">
             <div class="px-2 py-2">
 
@@ -61,7 +64,7 @@ require __DIR__ . '/views/header.php';
                 <div class="px-2">
                     <?php if (!isset($_GET['id'])) : ?>
                         <h2 class="text-lg sm:text-2xl font-bold">Here are all your tasks!</h2>
-                        <p class="text-xs sm:text-xl">Choose a list to sort them.</p>
+                        <p class="text-xs sm:text-lg">Click on "<span class="italic">Show my lists</span>" to see all your lists.</p>
                     <?php else : ?>
                         <?php foreach (getListNameFromId($database, $_GET['id']) as $listName) : ?>
                             <h2 class="text-lg sm:text-2xl font-bold"><?= $listName['list_desc'] ?></h2>
@@ -75,7 +78,7 @@ require __DIR__ . '/views/header.php';
                     <!-- IF NO LIST ARE CHOOSEN, SHOW ALL MY TASKS SPLIT INTO 'TODAY' AND 'ALL TASKS' -->
                     <?php if (!isset($_GET['id'])) : ?>
                         <!-- TAP TO SHOW ALL TODAYS TASKS -->
-                        <button class="show-todays-tasks py-2 px-2 font-bold underline decoration-emerald-500">Show todays tasks <i class="fas fa-angle-down"></i></button>
+                        <button class="show-todays-tasks text-lg sm:text-xl py-2 px-2 font-bold underline decoration-emerald-500">Show todays tasks <i class="fas fa-angle-down"></i></button>
                         <div class="hidden todays-tasks-container py-2 px-2">
                             <?php if (empty(getAllTodaysTasks($database, $_SESSION['user']['id']))) : ?>
                                 <p class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-700 leading-none text-lg font-bold mb-6 py-2 px-2">No tasks for today!</p>
@@ -122,7 +125,7 @@ require __DIR__ . '/views/header.php';
                         </div>
 
                         <!-- TAP TO SHOW ALL USERS TASKS! -->
-                        <button class="show-all-tasks py-2 px-2 font-bold underline decoration-emerald-500">Show all my tasks <i class="fas fa-angle-down"></i></button>
+                        <button class="show-all-tasks text-lg sm:text-xl py-2 px-2 font-bold underline decoration-emerald-500">Show all my tasks <i class="fas fa-angle-down"></i></button>
                         <div class="hidden all-tasks-container">
                             <?php foreach (getAllUserTasksByComplete($database, $_SESSION['user']['id']) as $allTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
@@ -203,7 +206,8 @@ require __DIR__ . '/views/header.php';
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
-                    <a href="/create.php" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold mt-6 py-2 px-4 ml-4 rounded focus:outline-none focus:shadow-outline">Add task!</a>
+                    <a href="/create.php" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold mt-6 py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline">Add task!</a>
+                    <button class="bg-fuchsia-600 hover:bg-fuchsia-800 text-white text-xs font-bold mt-3 py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline" onclick=openNav()>Show my lists</button>
                 </div>
             </div>
         </div>
