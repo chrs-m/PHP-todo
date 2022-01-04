@@ -21,12 +21,12 @@
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Sign In
                     </button>
-                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="reset-password.php">
                         Forgot Password?
                     </a>
                 </div>
         </form>
-        <a class="flex justify-center mt-3 text-blue-300" href="/signup.php">No account? Sign up here!</a>
+        <a class="flex justify-center mt-3 text-blue-300 hover:text-fuchsia-400" href="/signup.php">No account? Sign up here!</a>
     </div>
 </article>
 

@@ -23,10 +23,10 @@ require __DIR__ . '/views/header.php';
                     </div>
                     <div class="flex items-center justify-between">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Sign In</button>
-                        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
+                        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="reset-password.php">Forgot Password?</a>
                     </div>
                 </div>
-                <a href="/signup.php" class="block text-center font-bold text-blue-300 mt-8">No account? Sign up here!</a>
+                <a href="/signup.php" class="block text-center font-bold text-blue-300 hover:text-fuchsia-400 mt-8">No account? Sign up here!</a>
             </form>
         </div>
     <?php elseif (isLoggedIn()) : ?>
@@ -34,7 +34,10 @@ require __DIR__ . '/views/header.php';
         <p class="text-md mb-4">What do you need to accomplish today?</p>
         <a href="/lists.php" class="bg-gradient-to-r from-sky-400 to-purple-600 hover:bg-blue-700 text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Go to your lists and tasks!</a>
         <i class="far fa-check-circle animate-wiggle text-[120px] mt-24 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"></i>
-        <p class="quote-container text-xs sm:text-lg absolute bottom-1 py-4 px-6"></p>
+        <div class="quote-container w-full absolute bottom-1 py-5 px-5 sm:left-6 sm:w-3/4">
+            <p class="quote block text-xs sm:text-[16px]"></p>
+            <p class="author block text-[11px] sm:text-[14px] pt-1 italic"></p>
+        </div>
     <?php endif; ?>
 </article>
 

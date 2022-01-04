@@ -46,7 +46,7 @@ getAllListsAndTasks($database, $_SESSION['user']['id']);
                     <option value="">--Please choose task (dropdown menu)--</option>
                     <?php
                     $listName = '';
-                    foreach (GetAllUserTasksByTitle($database, $_SESSION['user']['id']) as $userTask) :
+                    foreach (getAllUserTasksByTitle($database, $_SESSION['user']['id']) as $userTask) :
                         if ($userTask['list_desc'] !== $listName) : ?>
                             <option value="<?= $userTask['task_id'] ?>"><?= $userTask['task_title'] ?></option>
                         <?php endif; ?>

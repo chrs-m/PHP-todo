@@ -1,5 +1,5 @@
-const quoteContainer = document.querySelector('.quote-container');
-const quoteAuhtor = document.querySelector('.quote-auhtor');
+const quoteContainer = document.querySelector('.quote');
+const quoteAuthor = document.querySelector('.author');
 
 function generateQuotes() {
     fetch('https://type.fit/api/quotes')
@@ -8,8 +8,10 @@ function generateQuotes() {
         })
         .then(function (data) {
             let randomInt = Math.floor(Math.random() * data.length);
-            quoteContainer.innerText =
-                data[randomInt].text + '\n - ' + data[randomInt].author;
+            quoteContainer.innerText = '"' + data[randomInt].text + '"';
+            if (data[randomInt].author !== null) {
+                quoteAuthor.innerText = '- ' + data[randomInt].author;
+            }
         });
 }
 
