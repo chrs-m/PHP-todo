@@ -11,12 +11,12 @@
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="reset-password">Email address</label>
                 <input class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="email" name="email" id="email">
-                <small class="text-xs italic">We'll never share your email with anyone else.</small>
+                <small class="text-xs text-gray-500 italic">We'll never share your email with anyone else.</small>
             </div>
             <button class="hidden reset-pw bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                 Send reset link
             </button>
-            <button class="fake-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <button class="fake-btn bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 Send reset link
             </button>
             <a class="flex justify-center mt-7 text-blue-300 hover:text-fuchsia-400" href="/signup.php">No account? Sign up here!</a>
