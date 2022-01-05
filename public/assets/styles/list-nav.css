@@ -3,6 +3,14 @@
     transition: 0.5s;
 }
 
+.open {
+    width: 200px;
+}
+
+.close {
+    width: 0px;
+}
+
 /* CLOSE BUTTON */
 .sidenav .closebtn {
     position: absolute;

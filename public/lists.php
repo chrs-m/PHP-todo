@@ -37,7 +37,7 @@ require __DIR__ . '/views/header.php';
     <div style="display: grid; grid-template: minmax(20vw, 100%) 1fr/ auto 1fr" class="">
 
         <div class="p-2 pt-2">
-            <div id="listSideNav" class="sidenav h-full fixed w-0 top-0 left-0 bg-gray-900/95 overflow-x-hidden py-16 ">
+            <div class="sidenav h-full fixed w-0 top-0 left-0 bg-gray-900/95 overflow-x-hidden py-16 ">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <div class="pb-3">
                     <div class="text-white font-bold underline decoration-2 decoration-fuchsia-500 text-lg px-2">My Tasklists</div>
