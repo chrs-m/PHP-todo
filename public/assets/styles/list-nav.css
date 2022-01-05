@@ -3,6 +3,7 @@
     transition: 0.5s;
 }
 
+/* OPEN AND CLOSE WIDTH */
 .open {
     width: 200px;
 }
@@ -19,4 +20,10 @@
     font-size: 36px;
     margin-left: 50px;
     color: white;
+}
+
+@media (min-width: 400px) {
+    .open {
+        width: 260px;
+    }
 }
