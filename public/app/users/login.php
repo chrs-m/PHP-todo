@@ -28,6 +28,6 @@ if (isset($_POST['email'], $_POST['password'])) {
         ];
         redirect('/index.php');
     } else {
-        redirect('/about.php');
+        redirect('/login.php?fromIndex=true');
     }
 }

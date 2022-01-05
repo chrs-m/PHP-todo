@@ -19,3 +19,6 @@ $config = require __DIR__ . '/config.php';
 
 // Setup the database connection.
 $database = new PDO($config['database_path']);
+
+// Login fail message
+$loginFail = $_SESSION['message'] = "Sorry, your e-mail or password was incorrect. Please try again.";

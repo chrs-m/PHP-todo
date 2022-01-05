@@ -57,7 +57,7 @@ require __DIR__ . '/views/header.php';
             <div class="px-2 py-2">
 
                 <!-- TITLE -->
-                <div class="px-2">
+                <div class="px-2 py-2">
                     <?php if (!isset($_GET['id'])) : ?>
                         <h2 class="text-lg sm:text-2xl font-bold">Here are all your tasks!</h2>
                         <p class="text-xs sm:text-lg">Click on "<span class="italic">Show my lists</span>" to see all your lists.</p>

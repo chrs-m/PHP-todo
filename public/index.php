@@ -11,7 +11,7 @@ require __DIR__ . '/views/header.php';
         <?php $_SESSION['message'] = "Welcome stranger!"; ?>
         <p class="font-bold text-2xl underline decoration-indigo-700"> <?php echo $_SESSION['message']; ?></p>
         <div class="mt-24 w-full max-w-xs">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="app/users/login.php" method="post">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4" action="app/users/login.php" method="post">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email">E-mail</label>
                     <input class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 text-xs" type="email" name="email" id="email" placeholder="your@email.com" required>
