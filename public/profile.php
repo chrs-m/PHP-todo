@@ -79,6 +79,11 @@ require __DIR__ . '/views/header.php';
             <button type="submit" class="block mt-4 text-xs py-2 px-4 rounded-full border-0 font-semibold bg-rose-600 text-white hover:bg-rose-700">Remove account</button>
         </form>
 
+        <?php if (isset($_SESSION['message'])) : ?>
+            <p><?= $_SESSION['message'] ?></p>
+            <?php unset($_SESSION['message']); ?>
+        <?php endif; ?>
+
     </article>
 <?php endif; ?>
 

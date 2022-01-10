@@ -6,7 +6,7 @@ require __DIR__ . '/../../autoload.php';
 
 
 // DELETE USER + ALL TASKS AND LISTS FROM DB
-if (isLoggedIn() && isset($_POST['delete-account'])) {
+if (isLoggedIn() && isset($_POST['delete-account']) === $user['email']) {
     $id = (int) $user['id'];
     $userAvatar = pathinfo($user['avatar'])['basename'];
 
@@ -26,6 +26,12 @@ if (isLoggedIn() && isset($_POST['delete-account'])) {
     if ($userAvatar !== 'profile-icon.png') {
         unlink(__DIR__ . '/../../database/avatars/' . $userAvatar);
     }
+} elseif (isLoggedIn() && empty(($_POST['delete-account']))) {
+    $_SESSION['message'] = 'You need to fill out the correct email in order to delete this account';
+    redirect('/profile.php');
+} elseif ((isLoggedIn() && isset($_POST['delete-account']) !== $user['email'])) {
+    $_SESSION['message'] = 'Sorry, You put in the wrong email address.';
+    redirect('/profile.php');
 }
 
 unset($_SESSION['user']);

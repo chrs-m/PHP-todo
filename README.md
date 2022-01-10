@@ -67,5 +67,5 @@ Code review written by [Nelly Svarvare Petrén](https://github.com/NellySP).
 
 Tested by the following people:
 
-1. Jane Doe
-2. John Doe
+1. Theo Sandell
+2. Patrik Staaf

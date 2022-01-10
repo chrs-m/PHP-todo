@@ -26,8 +26,10 @@ if (isset($_SESSION['user']) && isset($_FILES['update-avatar'])) {
     // CHECKS IF IMAGE IS PNG OR JPEG
     if ($newAvatar['type'] !== 'image/png' &&  $newAvatar['type'] !== 'image/jpeg') {
         $_SESSION['message'] = 'The ' . $newAvatar['name'] . ' image file type is not allowed.';
+        redirect('/profile.php');
     } elseif ($newAvatar['size'] >= 3145728) {
-        $errors[] = 'The uploaded file ' . $newAvatar['name'] . ' exceeded the filesize limit.';
+        $_SESSION['message'] = 'The uploaded file ' . $newAvatar['name'] . ' exceeded the filesize limit.';
+        redirect('/profile.php');
     }
 
     // PUTS THE IMAGE TO THE UPLOADS FOLDER
