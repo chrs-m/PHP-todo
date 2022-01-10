@@ -47,18 +47,6 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
                     $errors[] = 'The uploaded file ' . $avatar['name'] . ' exceeded the filesize limit.';
                 }
 
-                // CHECKS IF THEIR ARE ANY ERRORS, IF SO, THEN EXIT
-                if (count($errors) > 0) {
-                    $_SESSION['errors'] = $errors;
-                    $_SESSION['message'] = $_SESSION['errors'];
-
-                    header('Location: /create.php');
-
-                    echo $_SESSION['message'][0];
-
-                    exit;
-                }
-
                 // PUTS THE IMAGE TO THE UPLOADS FOLDER
                 $destinationAndName = __DIR__ . '/../database/avatars/' . $imgName;
 

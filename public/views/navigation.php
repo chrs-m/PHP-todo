@@ -38,7 +38,7 @@
                         <?php if (!isLoggedIn()) : ?>
                             <a href="/login.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/login.php") ? 'active' : "" ?>">Login</a>
                         <?php else : ?>
-                            <a href="/logout.php" class="focus:bg-gray-900 text-rose-500 hover:bg-gray-700 hover:text-rose-600 hover:underline px-3 py-2 rounded-md text-sm font-medium">Sign out</a>
+                            <a href="app/users/logout.php" class="focus:bg-gray-900 text-rose-500 hover:bg-gray-700 hover:text-rose-600 hover:underline px-3 py-2 rounded-md text-sm font-medium">Sign out</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="hidden profile-menu absolute right-0 mt-2 w-48 rounded-md shadow-xl drop-shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none animate-opacity" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <a href="/profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:text-gray-100 hover:bg-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">My Profile</a>
                     <a href="/about.php" class="block px-4 py-2 text-sm text-gray-700 hover:text-gray-100 hover:bg-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">About</a>
-                    <a href="/logout.php" class="block px-4 py-2 text-sm text-rose-700 hover:text-rose-400 hover:bg-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                    <a href="app/users/logout.php" class="block px-4 py-2 text-sm text-rose-700 hover:text-rose-400 hover:bg-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                 <a href="/login.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === "/login.php") ? 'active' : "" ?>">Login</a>
                 <a href="/about.php" class="focus:bg-gray-900 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium <?php echo ($_SERVER['REQUEST_URI'] === " /about.php") ? 'active' : "" ?>">About</a>
             <?php else : ?>
-                <a href="/logout.php" class="focus:bg-gray-900 text-rose-400 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign out</a>
+                <a href="app/users/logout.php" class="focus:bg-gray-900 text-rose-400 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign out</a>
             <?php endif; ?>
         </div>
     </div>
