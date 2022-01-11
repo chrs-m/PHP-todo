@@ -36,9 +36,9 @@ if (isset($_POST['task-title'])) {
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    $_SESSION['message'] = 'Your list has been created successfully!';
+    $_SESSION['message'] = 'Your task has been created successfully!';
     redirect('/create.php');
 } elseif (!isset($_POST['task-title'])) {
-    $_SESSION['message'] = 'You have to give your list a name!';
+    $_SESSION['message'] = 'You have to give your task a name!';
     redirect('/create.php');
 }

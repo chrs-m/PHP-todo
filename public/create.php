@@ -16,6 +16,10 @@ $userLists = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <section class="px-8 pt-6 pb-8 mb-4">
+    <?php if (isset($_SESSION['message'])) : ?>
+        <p class="text-sky-500 mb-2"><?= $_SESSION['message'] ?></p>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
     <!-- CREATE A NEW LIST HERE -->
     <h2 class="font-bold text-xl mb-2 underline decoration-pink-500">Create list</h2>
     <div class="create-list">

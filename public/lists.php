@@ -81,12 +81,12 @@ require __DIR__ . '/views/header.php';
 
                             <?php endif; ?>
                             <?php foreach (getAllTodaysTasks($database, $_SESSION['user']['id']) as $todaysTasks) : ?>
-                                <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
+                                <div class="task-container flex flex-col justify-between px-2 py-2 my-2 hover:bg-gray-200 rounded-md">
                                     <div class="pl-4">
                                         <h2 class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-base' : 'text-gray-700 leading-none text-base font-bold' ?>"><?= $todaysTasks['task_title'] ?></h2>
                                         <div class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-xs' : 'text-xs leading-none text-gray-500' ?>">
-                                            <?php if (!empty($allTasks['task_description'])) : ?>
-                                                <p class="text-[0.8rem] sm:text-sm "><?= $todaysTasks['task_description'] . "<br>"; ?></p>
+                                            <?php if (!empty($todaysTasks['task_description'])) : ?>
+                                                <p class="text-[0.8rem] sm:text-sm "><?= $todaysTasks['task_description']; ?></p>
                                             <?php endif; ?>
                                             <?php if ($todaysTasks['task_deadline'] !== null && $todaysTasks['task_deadline'] < date('Y-m-d H:i')) : ?>
                                                 <p class="<?= $todaysTasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-[0.7rem] sm:text-xs' : "text-rose-500 text-[0.7rem] sm:text-xs" ?>"><?= $todaysTasks['task_deadline'] ?></p>
@@ -122,14 +122,14 @@ require __DIR__ . '/views/header.php';
 
                         <!-- TAP TO SHOW ALL USERS TASKS! -->
                         <button class="show-all-tasks text-lg sm:text-xl py-2 px-2 font-bold underline decoration-sky-400 decoration-2">Show all my tasks <i class="fas fa-angle-down"></i></button>
-                        <div class="hidden all-tasks-container">
+                        <div class="hidden all-tasks-container px-2">
                             <?php foreach (getAllUserTasksByComplete($database, $_SESSION['user']['id']) as $allTasks) : ?>
                                 <div class="task-container flex flex-col justify-between py-2 px-2 my-2 hover:bg-gray-200 rounded-md">
                                     <div class="pl-4">
                                         <h2 class="<?= $allTasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-base' : 'text-gray-700 leading-none text-base font-bold' ?>"><?= $allTasks['task_title'] ?></h2>
                                         <div class="<?= $allTasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-xs' : 'text-xs leading-none text-gray-500' ?>">
                                             <?php if (!empty($allTasks['task_description'])) : ?>
-                                                <p class="text-[0.8rem] sm:text-sm "><?= $allTasks['task_description'] . "<br>"; ?></p>
+                                                <p class="text-[0.8rem] sm:text-sm "><?= $allTasks['task_description']; ?></p>
                                             <?php endif; ?>
                                             <?php if ($allTasks['task_deadline'] !== null && $allTasks['task_deadline'] < date('Y-m-d H:i')) : ?>
                                                 <p class="<?= $allTasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-[0.7rem] sm:text-xs' : "text-rose-500 text-[0.7rem] sm:text-xs" ?>"><?= $allTasks['task_deadline'] ?></p>
@@ -169,7 +169,7 @@ require __DIR__ . '/views/header.php';
                                     <h2 class="<?= $tasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-base' : 'text-gray-700 leading-none text-base font-bold' ?>"><?= $tasks['task_title'] ?></h2>
                                     <div class="<?= $tasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-xs' : 'text-xs text-gray-400 leading-none' ?>">
                                         <?php if ($tasks['task_description'] !== null) : ?>
-                                            <p class=""><?= $tasks['task_description'] . "<br>"; ?></p>
+                                            <p class=""><?= $tasks['task_description']; ?></p>
                                         <?php endif; ?>
                                         <?php if ($tasks['task_deadline'] !== null && $tasks['task_deadline'] < date('Y-m-d H:i')) : ?>
                                             <p class="<?= $tasks['task_completed'] === 'true' ? 'text-emerald-500 line-through text-xs' : "text-rose-500 text-xs" ?>"><?= $tasks['task_deadline'] ?></p>

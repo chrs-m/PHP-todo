@@ -41,6 +41,10 @@ require __DIR__ . '/views/header.php';
     <article class="update-info-container px-6 py-6">
         <form action="app/users/update/avatar.php" method="post" enctype="multipart/form-data">
             <div class="pb-6">
+                <?php if (isset($_SESSION['message'])) : ?>
+                    <p class="text-sky-500 mb-8"><?= $_SESSION['message'] ?></p>
+                    <?php unset($_SESSION['message']); ?>
+                <?php endif; ?>
                 <label class="text-lg lg:text-2xl font-bold" for="update-avatar">Choose your new avatar</label>
                 <input class="block mt-2 w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[0.8rem] file:font-semibold file:bg-gray-200 file:text-blue-700 hover:file:bg-blue-100" type="file" accept="image/jpeg, image/png" name="update-avatar">
                 <button type="submit" class="block mt-4 text-xs mr-4 py-2 px-4 rounded-full border-0 font-semibold bg-blue-600 text-white hover:bg-green-700">Update avatar</button>
