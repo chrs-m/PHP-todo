@@ -52,16 +52,27 @@ The assigment was to create a full functioning to-do app where the user can:
 
 Code review written by [Nelly Svarvare Petrén](https://github.com/NellySP).
 
-1. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-2. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-3. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-4. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-5. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-6. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-7. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-8. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-9. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-10. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
+1. signup.php 17, 23, 29, 35. Below the inlog and signup-form it says:  please provide the your password/email/name. An extremely minor thing!
+
+2. It seems you can create tasks without adding it to a list. Is this intentional? Otherwise this could be fixed with a -> elseif (!isset($_POST[‘list-title'])) { $_SESSION['message'] = 'You have to assign your task to a list!’;
+
+3. Reset-password.php 23. Misspelled remember. A missing b. An extremely minor thing!
+
+4. The file reset-password seems to be empty. Is this where a function not yet implemented is supposed to go? If you decide to not add the function, you could remove the file for a cleaner look! 
+
+5. Login.php. You could add an unset for the password, just so that it doesn’t save or is able to reach during the session. Unless you have already solved this in another way! -> unset($password). On line 29, before the redirect!
+
+6. Good idea to split up the update in to the different files. Makes It easier to find! 
+
+7. Since the delete-function is irreversible you could add that the user also how to write in their password to be able to delete. So that no one other than the user itself can delete the account. 
+
+8. Lists/edit.php here you have a feature that gives the list a random number if a new name is not given. It is nicely done! But might be a bit confusing in the long run if the user have many lists. Especially if the user updates lists multiple lists in that way. 
+
+9. In lists/edit.php and delete.php you have the same code for deleting lists. You could maybe delete one of the code-passages. To stay DRY. 
+
+10. In tasks/edit.php and delete.php you have the same code for deleting lists. You could maybe delete one of the code-passages. To stay DRY. 
+
+All in all very good structure, it is easy to find the code you’re looking for! 
 
 # Testers
 
