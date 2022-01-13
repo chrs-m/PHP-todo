@@ -20,7 +20,7 @@
                 Send reset link
             </button>
             <a class="flex justify-center mt-7 text-blue-300 hover:text-fuchsia-400" href="/signup.php">No account? Sign up here!</a>
-            <a class="flex justify-center mt-2 text-blue-300 hover:text-fuchsia-400" href="/index.php">Remeber your password? Sign in!</a>
+            <a class="flex justify-center mt-2 text-blue-300 hover:text-fuchsia-400" href="/index.php">Remember your password? Sign in!</a>
         </form>
     </div>
     <div class="hidden reset-message bg-gray-100 py-2 px-2 rounded-md drop-shadow-md">

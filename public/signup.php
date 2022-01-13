@@ -14,25 +14,25 @@
         <div class="mb-6">
             <label for="name" class="block text-gray-700 text-sm lg:text-2xl font-bold mb-2">Enter your name below</label>
             <input class="form-control block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-xs" type="name" name="name" id="name" placeholder="Your name" required>
-            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide the your name.</small>
+            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide your name.</small>
         </div>
 
         <div class="mb-6">
             <label for="username" class="block text-gray-700 text-sm lg:text-2xl font-bold mb-2">Enter your username below</label>
             <input class="form-control block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-xs" type="username" name="username" id="username" placeholder="Username" required>
-            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide the your username.</small>
+            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide your username.</small>
         </div>
 
         <div class="mb-6">
             <label for="email" class="block text-gray-700 text-sm lg:text-2xl font-bold mb-2">Enter your email below</label>
             <input class="form-control block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-xs" type="email" name="email" id="email" placeholder="email@email.com" required>
-            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide the your email address.</small>
+            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide your email address.</small>
         </div>
 
         <div class="mb-3">
             <label for="password" class="block text-gray-700 text-sm lg:text-2xl font-bold mb-2">Choose your password</label>
             <input class="form-control block shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-xs" type="password" name="password" id="password" placeholder="Password" required>
-            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide the your password (passphrase).</small>
+            <small class="form-text text-xs text-gray-500 px-2 italic">Please provide your password (passphrase).</small>
         </div>
 
         <div class="mb-3">

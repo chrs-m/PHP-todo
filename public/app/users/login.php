@@ -26,6 +26,7 @@ if (isset($_POST['email'], $_POST['password'])) {
             "email" => $user['email'],
             "avatar" => $user['avatar'] ?? 'profile-icon.png',
         ];
+        unset($password);
         redirect('/index.php');
     } else {
         redirect('/login.php?fromIndex=true');
