@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-
 // HERE WE REGISTER NEW USERS
 if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm-password'])) {
     if ($_POST['confirm-password'] !== $_POST['password']) {
@@ -64,6 +63,9 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
             $statement->execute();
 
             $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+            // SENDING AN EMAIL TO THE USER
+            sendEmail($email, $name);
 
             $_SESSION['message'] = 'Account created! Please login in with your new credentials.';
             redirect('/index.php');

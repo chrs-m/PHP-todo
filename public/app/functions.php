@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 // Redirect function
 /**
  * @param string $path
@@ -242,4 +246,33 @@ function getAllTodaysTasks(PDO $database, int $userId): array
     $statement->execute();
     $getAllTodaysTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $getAllTodaysTasks;
+}
+
+// SENDING AN EMAIL
+
+function sendEmail(string $email, string $name): void
+{
+    $mail = new PHPMailer();
+    $mail->isSMTP();
+    $mail->Host = "smtp.gmail.com";
+    $mail->SMTPAuth = "true";
+    $mail->SMTPSecure = "tls";
+    $mail->Port = "587";
+    $mail->Username = "antmar0417@skola.goteborg.se";
+    $mail->Password = "";
+    $mail->Subject = "Test Email";
+    $mail->setFrom("antmar0417@skola.goteborg.se");
+
+    $mail->isHTML(true);
+    $mail->Body = "<h1>Hello $name! </h1><p>Thanks for creating an account!</p>";
+    // Reciever
+    $mail->addAddress("$email");
+
+    if ($mail->Send()) {
+        echo "email sent!";
+    } else {
+        echo "error!";
+    }
+
+    $mail->smtpClose();
 }
