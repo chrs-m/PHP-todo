@@ -201,9 +201,18 @@ require __DIR__ . '/views/header.php';
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        <!-- Test -->
+                        <?= $listName['list_desc'] ?>
+                        <p>List id: <?= $listName['list_id'] ?></p>
+                        <p>User id: <?php echo $_SESSION['user']['id']; ?></p>
+
+                        <form action="app/tasks/complete-all.php" method="POST">
+                            <input type="hidden" id="current_list_id" name="current_list_id" value="<?= $listName['list_id'] ?>">
+                            <button class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold mt-6 py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline" type="submit">All Done</button>
+                        </form>
                     <?php endif; ?>
                     <a href="/create.php" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold mt-6 py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline">Add task!</a>
-                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold mt-3 py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline" onclick=openNav()>Show my lists</button>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold mt-6 py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline" onclick=openNav()>Show my lists</button>
                 </div>
             </div>
         </div>
