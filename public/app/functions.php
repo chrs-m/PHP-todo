@@ -260,7 +260,7 @@ function sendEmail(string $email, string $name): void
     $mail->Port = "587";
     $mail->Username = "antmar0417@skola.goteborg.se";
     $mail->Password = "";
-    $mail->Subject = "Test Email";
+    $mail->Subject = "Wunderlist";
     $mail->setFrom("antmar0417@skola.goteborg.se");
 
     $mail->isHTML(true);
