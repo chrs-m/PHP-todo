@@ -21,7 +21,7 @@ if (isset($_POST['email'])) {
         $mail->Port = "587";
         $mail->Username = "antmar0417@skola.goteborg.se";
         // Type a password here
-        $mail->Password = "AudiRS800+";
+        $mail->Password = "";
         $mail->Subject = "Test Email 23/01";
         $mail->setFrom("antmar0417@skola.goteborg.se");
         $linkEmail = "http://localhost:8080/reset-password-link.php?email=" . $emailTo;
