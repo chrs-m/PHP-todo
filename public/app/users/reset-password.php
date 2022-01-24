@@ -22,7 +22,7 @@ if (isset($_POST['email'])) {
         $mail->Username = "antmar0417@skola.goteborg.se";
         // Type a password here
         $mail->Password = "";
-        $mail->Subject = "Test Email 23/01";
+        $mail->Subject = "Password Reset";
         $mail->setFrom("antmar0417@skola.goteborg.se");
         $linkEmail = "http://localhost:8080/reset-password-link.php?email=" . $emailTo;
         $mail->isHTML(true);
