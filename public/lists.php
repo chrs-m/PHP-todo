@@ -201,11 +201,7 @@ require __DIR__ . '/views/header.php';
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        <!-- Test -->
-                        <?= $listName['list_desc'] ?>
-                        <p>List id: <?= $listName['list_id'] ?></p>
-                        <p>User id: <?php echo $_SESSION['user']['id']; ?></p>
-
+                        <!-- MARK ALL TASKS IN A LIST AS COMPLETED! -->
                         <form action="app/tasks/complete-all.php" method="POST">
                             <input type="hidden" id="current_list_id" name="current_list_id" value="<?= $listName['list_id'] ?>">
                             <button class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold mt-6 py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline" type="submit">All Done</button>

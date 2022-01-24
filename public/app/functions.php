@@ -252,27 +252,27 @@ function getAllTodaysTasks(PDO $database, int $userId): array
 
 function sendEmail(string $email, string $name): void
 {
-    $mail = new PHPMailer();
-    $mail->isSMTP();
-    $mail->Host = "smtp.gmail.com";
-    $mail->SMTPAuth = "true";
-    $mail->SMTPSecure = "tls";
-    $mail->Port = "587";
-    $mail->Username = "antmar0417@skola.goteborg.se";
-    $mail->Password = "";
-    $mail->Subject = "Wunderlist";
-    $mail->setFrom("antmar0417@skola.goteborg.se");
-
-    $mail->isHTML(true);
-    $mail->Body = "<h1>Hello $name! </h1><p>Thanks for creating an account!</p>";
-    // Reciever
-    $mail->addAddress("$email");
-
-    if ($mail->Send()) {
+    try {
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = "true";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = "587";
+        $mail->Username = "antmar0417@skola.goteborg.se";
+        // Type a password here
+        $mail->Password = "";
+        $mail->Subject = "Wunderlist";
+        $mail->setFrom("antmar0417@skola.goteborg.se");
+        $mail->isHTML(true);
+        $mail->Body = "<h1>Hello $name! </h1><p>Thanks for creating an account!</p>";
+        // Reciever
+        $mail->addAddress("$email");
+        $mail->Send();
         echo "email sent!";
-    } else {
-        echo "error!";
-    }
 
-    $mail->smtpClose();
+        $mail->smtpClose();
+    } catch (Exception $e) {
+        echo 'Error: ', $mail->ErrorInfo;
+    }
 }
