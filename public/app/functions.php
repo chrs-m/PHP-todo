@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+//Vendor
+require __DIR__ . '/../../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+use Symfony\Component\Dotenv\Dotenv;
+
 // Redirect function
 /**
  * @param string $path
@@ -242,4 +250,36 @@ function getAllTodaysTasks(PDO $database, int $userId): array
     $statement->execute();
     $getAllTodaysTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $getAllTodaysTasks;
+}
+
+// SENDING AN EMAIL
+
+function sendEmail(string $email, string $name): void
+{
+    $dotenv = new Dotenv();
+    $dotenv->loadEnv(__DIR__ . '/../../.env');
+    $password = $_ENV['EMAIL_PASSWORD'];
+    try {
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = "true";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = "587";
+        $mail->Username = "antmar0417@skola.goteborg.se";
+        // Type a password here
+        $mail->Password = "$password";
+        $mail->Subject = "Wunderlist";
+        $mail->setFrom("antmar0417@skola.goteborg.se");
+        $mail->isHTML(true);
+        $mail->Body = "<h1>Hello $name! </h1><p>Thanks for creating an account!</p>";
+        // Reciever
+        $mail->addAddress("$email");
+        $mail->Send();
+        echo "email sent!";
+
+        $mail->smtpClose();
+    } catch (Exception $e) {
+        echo 'Error: ', $mail->ErrorInfo;
+    }
 }

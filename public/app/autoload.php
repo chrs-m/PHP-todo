@@ -22,3 +22,8 @@ $database = new PDO($config['database_path']);
 
 // Login fail message
 $loginFail = "Sorry, your e-mail or password was incorrect. Please try again.";
+
+//Email
+require __DIR__ . '/phpmailer/includes/PHPMailer.php';
+require __DIR__ . '/phpmailer/includes/SMTP.php';
+require __DIR__ . '/phpmailer/includes/Exception.php';
