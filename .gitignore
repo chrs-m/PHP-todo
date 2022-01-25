@@ -3,3 +3,5 @@
 node_modules
 assets/styles/tailwind
 public/assets/styles/tailwind/style.css
+.env
+/vendor
