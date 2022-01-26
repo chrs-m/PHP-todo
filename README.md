@@ -88,3 +88,7 @@ Tested by the following people:
 
 1. Theo Sandell
 2. Patrik Staaf
+
+# Wunderlist+
+Link to Wunderlist+ PR's:
+[See pull requests here](https://github.com/chrs-m/PHP-todo/commits/wunderlistPlus)
