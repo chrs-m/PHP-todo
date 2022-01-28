@@ -88,3 +88,9 @@ Tested by the following people:
 
 1. Theo Sandell
 2. Patrik Staaf
+
+# Wunderlist+
+
+```
+See WunderlistPlus-branch for new features.
+```
