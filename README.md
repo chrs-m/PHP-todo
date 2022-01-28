@@ -92,3 +92,6 @@ Tested by the following people:
 # Wunderlist+
 Link to Wunderlist+ PR's:
 [See pull requests here](https://github.com/chrs-m/PHP-todo/commits/wunderlistPlus)
+**New features:**
+- Reset password
+- Mark all tasks complete
